@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Lato";
+    font-style: normal;
+    src: url("/fonts/Lato-Regular.woff") format("woff"),
+      url("/fonts/Lato-Regular.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Lato";
+    font-style: medium;
+    src: url("/fonts/Lato-Medium.woff") format("woff"),
+      url("/fonts/Lato-Medium.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Lato";
+    font-style: semibold;
+    src: url("/fonts/Lato-Semibold.woff") format("woff"),
+      url("/fonts/Lato-Semibold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Lato";
+    font-style: bold;
+    src: url("/fonts/Lato-Bold.woff") format("woff"),
+      url("/fonts/Lato-Bold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Londriana-Solid";
+    src: url("/fonts/LondrinaSolid-Regular.woff") format("woff");
+  }
+  /* :root {
+    --color-page: 255, 115, 179;
+  } */
+}
+
+body {
+  background-color: #181a1c;
+  color: white;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
