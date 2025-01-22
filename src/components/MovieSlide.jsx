@@ -7,8 +7,8 @@ const MovieSlide = ({ children, title }) => {
         {/* title */}
         <h3 className="text-xl sm:text-3xl">{title}</h3>
         {/* slider */}
-        <div className="relative items-center flex justify-center">
-          <div className="relative items-center  grid grid-flow-col gap-6 overflow-x-auto">
+        <div className="relative w-full h-full items-center flex justify-center flex-nowrap">
+          <div className="items-center grid grid-flow-col gap-6 overflow-x-auto">
             {/* poster */}
             {children}
           </div>

@@ -1,21 +1,25 @@
 import React from "react";
 import Button from "./elements/Button";
+import DropDownGenre from "./elements/DropDownGenre";
 
-const Hero = () => {
+const Hero = ({ title, bg, showGenre, desc }) => {
   return (
     <section className="relative">
       {/* hero image */}
-      <img src="/img/Hero.png" alt="hero image" />
+      <img src={`${bg}`} alt="hero image" />
+      {/* genre dropdown */}
+      {showGenre && (
+        <div className="absolute top-0 left-0 px-5 sm:px-20 py-5 sm:py-10 z-10">
+          <DropDownGenre />
+        </div>
+      )}
       <div className="absolute max-w-[1440px] w-full bottom-0 left-0 px-5 sm:px-20">
-        {/* hero text */}
+        {/* hero details */}
         <div className="max-w-[668px] w-full">
-          <h4 className="text-2xl md:text-5xl">Duty After School</h4>
+          <h4 className="text-2xl md:text-5xl">{title}</h4>
           <div className="">
             <p className=" text-xs md:text-lg line-clamp-2 lg:line-clamp-none my-3 lg:mb-10">
-              Sebuah benda tak dikenal mengambil alih dunia. Dalam keputusasaan,
-              Departemen Pertahanan mulai merekrut lebih banyak tentara,
-              termasuk siswa sekolah menengah. Mereka pun segera menjadi pejuang
-              garis depan dalam perang.
+              {desc}
             </p>
           </div>
         </div>
