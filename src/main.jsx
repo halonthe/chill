@@ -9,6 +9,7 @@ import HomePage from "./routes/HomePage";
 import MyListPage from "./routes/MyListPage";
 import MoviePage from "./routes/MoviePage";
 import SeriesPage from "./routes/SeriesPage";
+import ProfilePage from "./routes/ProfilePage";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -20,6 +21,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="series" element={<SeriesPage />} />
           <Route path="film" element={<MoviePage />} />
           <Route path="daftar-saya" element={<MyListPage />} />
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
         {/* Auth Routes */}
         <Route path="login" element={<LoginPage />} />

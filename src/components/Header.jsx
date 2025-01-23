@@ -17,7 +17,7 @@ const Header = () => {
         onClick={handleClick}
       >
         <img
-          src="/img/profile.png"
+          src="/img/icons/profile.png"
           alt="profile picture"
           className="w-6 h-6 md:w-10 md:h-10"
         />
