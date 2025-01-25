@@ -201,11 +201,19 @@ const HomePage = () => {
       category: ["Action", "Drama", "Sci-Fi"],
     },
   ];
+  const hero = [
+    {
+      title: "Happiness",
+      bg: "/img/poster/hero/happiness.png",
+      showGenre: true,
+      desc: "Mengisahkan tentang kelompok orang yang berjuang untuk bertahan hidup di dalam sebuah gedung apartemen yang penuh dengan zombie. Sayangnya, virus zombie hanya terdapat di dalam area apartemen tersebut dan tidak menyebar ke luar kawasan apartemen.",
+    },
+  ];
 
   return (
     <>
       {/* Hero */}
-      <Hero />
+      <Hero {...hero[0]} />
       {/* Recent */}
       <MovieSlide title="Melanjutkan Tonton Film">
         {data.map(

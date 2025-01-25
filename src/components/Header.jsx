@@ -28,7 +28,7 @@ const Header = () => {
         />
       </div>
       {/* dropdown */}
-      {open && <DropDownProfile />}
+      {open && <DropDownProfile onClick={handleClick} />}
     </header>
   );
 };

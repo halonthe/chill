@@ -10,6 +10,7 @@ import MyListPage from "./routes/MyListPage";
 import MoviePage from "./routes/MoviePage";
 import SeriesPage from "./routes/SeriesPage";
 import ProfilePage from "./routes/ProfilePage";
+import SubscribePage from "./routes/SubscribePage";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="film" element={<MoviePage />} />
           <Route path="daftar-saya" element={<MyListPage />} />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="subscribe" element={<SubscribePage />} />
         </Route>
         {/* Auth Routes */}
         <Route path="login" element={<LoginPage />} />

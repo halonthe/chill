@@ -173,7 +173,7 @@ const ProfilePage = () => {
                   Kata Sandi
                 </label>
                 <input
-                  type="pasword"
+                  type="password"
                   className="text-lg bg-transparent w-full border-none outline-none"
                   placeholder="****************"
                   required
@@ -181,7 +181,13 @@ const ProfilePage = () => {
                   ref={password}
                 />
               </div>
-              <FaPen className="cursor-pointer w-6 h-6" />
+              <FaPen
+                className="cursor-pointer w-6 h-6"
+                onClick={() => {
+                  password.current.disabled = false;
+                  password.current.focus();
+                }}
+              />
             </div>
           </div>
           {/* submit button */}
