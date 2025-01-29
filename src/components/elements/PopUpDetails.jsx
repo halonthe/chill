@@ -2,8 +2,13 @@ import React from "react";
 import Button from "./Button";
 import Episode from "./Episode";
 import { IoClose } from "react-icons/io5";
+import { useNavigate } from "react-router";
 
 const PopUpDetails = ({ onClick, isMovie, isSeries }) => {
+  const navigate = useNavigate();
+  const handleStartButton = () => {
+    navigate("/watch/ted-lasso");
+  };
   return (
     <div className="absolute w-full h-full z-30 flex items-center justify-center bg-[#181A1C]/80 overflow-scroll backdrop-blur-sm">
       {/* content */}
@@ -32,7 +37,11 @@ const PopUpDetails = ({ onClick, isMovie, isSeries }) => {
               <div className="flex justify-center items-center">
                 {/* left */}
                 <div className="flex items-center w-full gap-3">
-                  <Button bgColor="bg-[#0F1E93]" label="Mulai" />
+                  <Button
+                    bgColor="bg-[#0F1E93]"
+                    label="Mulai"
+                    onClick={handleStartButton}
+                  />
                   <div className="w-6 h-6 md:w-9 md:h-9 rounded-full border border-white flex items-center justify-center text-xs md:text-2xl cursor-pointer">
                     +
                   </div>
