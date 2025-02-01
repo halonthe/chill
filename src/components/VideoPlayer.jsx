@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
 const VideoPlayer = () => {
   const [subtitle, setSubtitle] = useState(false);
   const [nextEpisode, setNextEpisode] = useState(false);
   const [speed, setSpeed] = useState(false);
   const [list, setList] = useState(false);
+  const [isPremium, setIsPremium] = useState(true);
 
   return (
     <section className="w-screen h-screen relative font-lato">
@@ -15,7 +17,7 @@ const VideoPlayer = () => {
         className="w-screen h-screen object-cover"
       />
       {/* play / pause */}
-      <div className="absolute bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute w-screen h-screen flex justify-center items-center bottom-[66px] left-0">
         <img
           className="cursor-pointer"
           src="/img/icons/pause-circle-outline.png"
@@ -23,7 +25,7 @@ const VideoPlayer = () => {
         />
       </div>
       {/* skip intro */}
-      <div className="absolute bottom-28 right-12 cursor-pointer px-5 py-2 bg-white text-[#3A3541] rounded-full text-center text-base font-bold">
+      <div className="absolute bottom-28 right-12 cursor-pointer lg:px-5 lg:py-2 px-3 py-1 bg-white text-[#3A3541] rounded-full text-center lg:text-base text-xs font-bold">
         {" "}
         Lewati Intro
       </div>
@@ -32,61 +34,61 @@ const VideoPlayer = () => {
         {/* left controls */}
         <div className="flex gap-6 items-center">
           <img
-            className="cursor-pointer"
+            className="cursor-pointer w-7 h-7 lg:w-10 lg:h-10"
             src="/img/icons/play.png"
             alt="play button"
           />
           <img
-            className="cursor-pointer"
+            className="cursor-pointer w-7 h-7 lg:w-10 lg:h-10"
             src="/img/icons/rewind-10.png"
             alt="rewind button"
           />
           <img
-            className="cursor-pointer"
+            className="cursor-pointer w-7 h-7 lg:w-10 lg:h-10"
             src="/img/icons/fast-forward-10.png"
             alt="fast-forward button"
           />
           <img
-            className="cursor-pointer"
+            className="cursor-pointer w-7 h-7 lg:w-10 lg:h-10"
             src="/img/icons/volume.png"
             alt="volume button"
           />
         </div>
         {/* title */}
         <div>
-          <p className="text-lg font-semibold text-center font-lato">
+          <p className="text-sm lg:text-lg font-semibold text-center font-lato line-clamp-1">
             TED Lasso Episode 1: The Good, the Bad, and the Ugly
           </p>
         </div>
         {/* right controls */}
         <div className="flex gap-6 items-center">
           <img
-            className="cursor-pointer"
+            className="cursor-pointer w-7 h-7 lg:w-10 lg:h-10"
             src="/img/icons/next.png"
             alt="next button"
             onMouseEnter={() => setNextEpisode(true)}
             onMouseLeave={() => setNextEpisode(false)}
           />
           <img
-            className="cursor-pointer"
+            className="cursor-pointer w-7 h-7 lg:w-10 lg:h-10"
             src="/img/icons/list.png"
             alt="list button"
             onClick={() => setList(!list)}
           />
           <img
-            className="cursor-pointer w-10 h-10"
+            className="cursor-pointer w-7 h-7 lg:w-10 lg:h-10"
             src="/img/icons/subtitle.png"
             alt="subtitle button"
             onClick={() => setSubtitle(!subtitle)}
           />
           <img
-            className="cursor-pointer"
+            className="cursor-pointer w-7 h-7 lg:w-10 lg:h-10"
             src="/img/icons/speedometer.png"
             alt="speed button"
             onClick={() => setSpeed(!speed)}
           />
           <img
-            className="cursor-pointer"
+            className="cursor-pointer w-7 h-7 lg:w-10 lg:h-10"
             src="/img/icons/fullscreen.png"
             alt="fullscreen button"
           />
@@ -100,6 +102,8 @@ const VideoPlayer = () => {
       {speed && <Speedometer />}
       {/* list */}
       {list && <List />}
+      {/* upgrade to premium */}
+      {!isPremium && <UpgradeToPremium />}
     </section>
   );
 };
@@ -218,6 +222,61 @@ const List = () => {
           Episode 4
         </div>
       </div>
+    </div>
+  );
+};
+
+const UpgradeToPremium = () => {
+  const navigate = useNavigate();
+  return (
+    <div className="w-screen h-screen absolute top-0 left-0 bg-black/70 flex items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-8 lg:gap-16">
+        <div className="text-center">
+          <p className="text-2xl lg:text-3xl font-bold">Layanan Premium🌟</p>
+          <p className="text-base lg:text-lg">
+            Tingkatkan paket anda untuk dapat menonton video ini.
+          </p>
+        </div>
+        <div className="flex flex-col items-center justify-center text-center">
+          <p className="text-base lg:text-lg">Kenapa harus berlangganan?</p>
+          <div className="grid grid-cols-3 w-[600px]">
+            <BenefitContent icon="download" content="Download konten pilihan" />
+            <BenefitContent icon="ads-off" content="Tidak ada iklan" />
+            <BenefitContent icon="movie-roll" content="Tonton semua konten" />
+            <BenefitContent
+              icon="video-4k-box"
+              content="kualitas maksimal sampai dengan 4K"
+            />
+            <BenefitContent
+              icon="tablet-cellphone"
+              content="Tonton di Tv, Tablet, Mobile, dan Laptop"
+            />
+            <BenefitContent
+              icon="subtitle"
+              content="Subtitle Untuk Konten Pilihan"
+            />
+          </div>
+        </div>
+        <button
+          onClick={() => {
+            navigate("/subscribe");
+          }}
+          className="px-7 py-3 rounded-full bg-[#09147A]"
+        >
+          Ubah Jadi Premium
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const BenefitContent = ({ icon, content }) => {
+  return (
+    <div className="flex flex-col items-center gap-6 capitalize">
+      <img src={`/img/icons/${icon}.png`} alt={`${icon} icon`} />
+      <span className="max-w-[150px] text-center text-[#C1C2C4]">
+        {content}
+      </span>
     </div>
   );
 };

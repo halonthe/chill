@@ -1,4 +1,3 @@
-import React from "react";
 import Hero from "../components/Hero";
 import Poster from "../components/elements/Poster";
 import MovieSlide from "../components/MovieSlide";
