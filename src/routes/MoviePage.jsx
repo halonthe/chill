@@ -220,9 +220,9 @@ const MoviePage = () => {
   };
   return (
     <div className="relative">
-      <>{openDetails && <PopUpDetails onClick={handleDetails} />}</>
+      <>{openDetails && <PopUpDetails onCloseBtnClick={handleDetails} />}</>
       {/* hero */}
-      <Hero {...hero[0]} />
+      <Hero {...hero[0]} onMoreBtnClick={handleDetails} />
       {/* melanjutkan tonton Film */}
       <MovieSlide title="Melanjutkan Tonton Film">
         {data.map(

@@ -4,7 +4,7 @@ import Episode from "./Episode";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router";
 
-const PopUpDetails = ({ onClick, isMovie, isSeries }) => {
+const PopUpDetails = ({ onCloseBtnClick, isMovie, isSeries }) => {
   const navigate = useNavigate();
   const handleStartButton = () => {
     navigate("/watch/ted-lasso");
@@ -26,7 +26,7 @@ const PopUpDetails = ({ onClick, isMovie, isSeries }) => {
           {/* close */}
           <div
             className="absolute bg-[#181A1C] flex items-center justify-center top-6 right-6 text-[#C1C2C4] text-lg w-4 h-4 md:w-7 md:h-7 rounded-full cursor-pointer"
-            onClick={onClick}
+            onClick={onCloseBtnClick}
           >
             <IoClose />
           </div>

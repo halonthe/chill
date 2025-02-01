@@ -1,4 +1,3 @@
-import React from "react";
 import CardPrice from "../components/elements/CardPrice";
 import { useNavigate } from "react-router";
 

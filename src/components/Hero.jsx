@@ -1,8 +1,9 @@
-import React from "react";
 import Button from "./elements/Button";
 import DropDownGenre from "./elements/DropDownGenre";
+import { useNavigate } from "react-router";
 
-const Hero = ({ title, bg, showGenre, desc }) => {
+const Hero = ({ title, bg, showGenre, desc, onMoreBtnClick }) => {
+  const navigate = useNavigate();
   return (
     <section className="relative">
       {/* hero image */}
@@ -27,8 +28,16 @@ const Hero = ({ title, bg, showGenre, desc }) => {
         <div className="flex items-center justify-between mb-0 sm:mb-20">
           {/* left */}
           <div className="flex items-center justify-center gap-2 text-xs">
-            <Button label="Mulai" bgColor="bg-[#0F1E93]" />
-            <Button label="Selengkapnya" bgColor="bg-[#22282A]" />
+            <Button
+              label="Mulai"
+              bgColor="bg-[#0F1E93]"
+              onClick={() => navigate("/watch/slug-or-title-or-id")}
+            />
+            <Button
+              label="Selengkapnya"
+              bgColor="bg-[#22282A]"
+              onClick={onMoreBtnClick}
+            />
             <button className="h-6 sm:h-10 p-1 sm:p-2 text-[#C1C2C4] border border-[#C1C2C4] rounded-full flex items-center justify-center">
               18+
             </button>

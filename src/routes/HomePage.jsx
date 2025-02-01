@@ -1,6 +1,9 @@
 import Hero from "../components/Hero";
 import Poster from "../components/elements/Poster";
 import MovieSlide from "../components/MovieSlide";
+import { useNavigate } from "react-router";
+import { useState } from "react";
+import PopUpDetails from "../components/elements/PopUpDetails";
 
 const HomePage = () => {
   // Movie data
@@ -208,11 +211,18 @@ const HomePage = () => {
       desc: "Mengisahkan tentang kelompok orang yang berjuang untuk bertahan hidup di dalam sebuah gedung apartemen yang penuh dengan zombie. Sayangnya, virus zombie hanya terdapat di dalam area apartemen tersebut dan tidak menyebar ke luar kawasan apartemen.",
     },
   ];
+  const [openDetails, setOpenDetails] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
+      <>
+        {openDetails && (
+          <PopUpDetails onCloseBtnClick={() => setOpenDetails(!openDetails)} />
+        )}
+      </>
       {/* Hero */}
-      <Hero {...hero[0]} />
+      <Hero {...hero[0]} onMoreBtnClick={() => setOpenDetails(!openDetails)} />
       {/* Recent */}
       <MovieSlide title="Melanjutkan Tonton Film">
         {data.map(
