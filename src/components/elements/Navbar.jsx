@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router";
 
 const Navbar = () => {
@@ -6,7 +6,7 @@ const Navbar = () => {
     <nav className="flex items-center gap-5 text-xs font-medium md:gap-20 md:text-lg">
       <Link to="/">
         <div className="flex flex-row items-center gap-2 text-3xl font-bold font-londriana md:after:content-['CHILL']">
-          <img src="/img/Logo.png" alt="logo" width="25px" height="22px" />
+          <img src="/img/icons/Logo.png" alt="logo" width="25px" height="22px" />
         </div>
       </Link>
       <Link

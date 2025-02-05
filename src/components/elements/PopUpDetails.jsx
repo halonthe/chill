@@ -14,14 +14,15 @@ const PopUpDetails = ({ onCloseBtnClick, isMovie, isSeries }) => {
       {/* content */}
       <div
         className="w-[320px] md:w-[933px] bg-[#181A1C] rounded-3xl"
-        id="popUpDetail"
       >
         {/* header */}
         <div className="w-full relative">
+          {/* gradient effect */}
+          <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-[#181A1C] to-transparent"></div>
           {/* image */}
           <img
-            src="/img/poster/landscape/ted-lasso.png"
-            className="object-cover h-[190px] md:h-[554px] w-full"
+            src="/img/poster/thumbnail/ted-lasso/banner.png"
+            className="object-cover h-[190px] md:h-[554px] w-full rounded-t-3xl"
           />
           {/* close */}
           <div
@@ -51,7 +52,7 @@ const PopUpDetails = ({ onCloseBtnClick, isMovie, isSeries }) => {
                 </div>
                 {/* right */}
                 <div className="w-6 h-6 md:w-9 md:h-9 rounded-full border border-white flex items-center justify-center md:text-2xl cursor-pointer">
-                  <img src="/img/mute.png" alt="" />
+                  <img src="/img/icons/mute.png" alt="" />
                 </div>
               </div>
             </div>
@@ -131,24 +132,29 @@ const PopUpDetails = ({ onCloseBtnClick, isMovie, isSeries }) => {
               />
             </>
           )}
+          {isMovie && (
+            <>
+            
           <p className="text-xs md:text-2xl mb-2 md:mb-7">Rekomendasi Serupa</p>
           <div className="flex gap-3 md:gap-7">
             <img
-              src="/img/poster/potrait/mix-1.png"
+              src="/img/poster/potrait/suzume.png"
               alt=""
               className="w-[88px] h-[132px] md:w-[234px] md:h-[365px] object-cover"
             />
             <img
-              src="/img/poster/potrait/mix-1.png"
+              src="/img/poster/potrait/dilan.png"
               alt=""
               className="w-[88px] h-[132px] md:w-[234px] md:h-[365px] object-cover"
             />
             <img
-              src="/img/poster/potrait/mix-1.png"
+              src="/img/poster/potrait/megan.png"
               alt=""
               className="w-[88px] h-[132px] md:w-[234px] md:h-[365px] object-cover"
             />
           </div>
+            </>
+          )}
         </div>
       </div>
     </div>

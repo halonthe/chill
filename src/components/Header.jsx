@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Navbar from "./elements/Navbar";
 import DropDownProfile from "./elements/DropDownProfile";
 
@@ -22,7 +22,7 @@ const Header = () => {
           className="w-6 h-6 md:w-10 md:h-10"
         />
         <img
-          src="/img/KeyboardArrowDown.png"
+          src="/img/icons/KeyboardArrowDown.png"
           alt="open profile"
           className="w-4 h-4 md:w-7 md:h-7"
         />

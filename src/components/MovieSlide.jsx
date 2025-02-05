@@ -1,4 +1,3 @@
-import React from "react";
 
 const MovieSlide = ({ children, title }) => {
   return (
@@ -14,12 +13,12 @@ const MovieSlide = ({ children, title }) => {
           </div>
           {/* prev & next */}
           <img
-            src="/img/prev.png"
+            src="/img/icons/prev.png"
             alt="previous navigation button"
             className="hidden sm:block absolute -left-5 cursor-pointer"
           />
           <img
-            src="/img/next.png"
+            src="/img/icons/next.png"
             alt="next navigation button"
             className="hidden sm:block absolute -right-5 cursor-pointer"
           />

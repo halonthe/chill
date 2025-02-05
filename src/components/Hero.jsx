@@ -45,7 +45,7 @@ const Hero = ({ title, bg, showGenre, desc, onMoreBtnClick }) => {
           {/* right */}
           <button className="h-6 w-6 sm:h-10 sm:w-10 p-1 sm:p-2 border border-[#C1C2C4] rounded-full flex items-center justify-center">
             <img
-              src="/img/mute.png"
+              src="/img/icons/mute.png"
               alt="volume control"
               className="w-3 h-3 sm:w-5 sm:h-5"
             />

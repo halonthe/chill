@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import HoverSeries from "./HoverSeries";
 
 const Poster = ({
-  type,
+  oriented,
   title,
   rating,
   src,
@@ -19,22 +19,22 @@ const Poster = ({
       )}
       <div
         className={`relative ${
-          type === "landscape"
+          oriented === "landscape"
             ? "w-[302px] h-[162px] "
             : "w-[95px] h-[145px] sm:w-[234px] sm:h-[365px]"
         }  cursor-pointer rounded-md overflow-hidden`}
       >
         {/* img */}
-        <img src={src} alt={title} onClick={showDetail} />
+        <img src={src} alt={title} onClick={showDetail} className={` ${oriented === "landscape" ? "w-[302px] h-[162px]" : "w-[95px] h-[145px] sm:w-[234px] sm:h-[365px]"} object-cover`} />
         {/* title and rating */}
-        {type === "landscape" && (
+        {oriented === "landscape" && (
           <div
             className="absolute bottom-0 flex justify-between items-center w-full p-4"
             onClick={showDetail}
           >
-            <p className="text-sm sm:text-lg">{title}</p>
+            <p className="text-sm sm:text-lg line-clamp-1">{title}</p>
             <div className="flex items-center gap-1">
-              <img src="/img/star.png" alt="rating" />
+              <img src="/img/icons/star.png" alt="rating" />
               <p className="text-sm sm:text-lg">{rating}/5</p>
             </div>
           </div>

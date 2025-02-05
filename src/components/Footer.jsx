@@ -25,7 +25,7 @@ const Footer = () => {
       {/* companys */}
       <div className="mb-5 flex flex-col gap-3">
         <img
-          src="/img/Logo-Text.png"
+          src="/img/icons/Logo-Text.png"
           alt="chill"
           className="w-20 h-6 sm:w-40 sm:h-11"
         />

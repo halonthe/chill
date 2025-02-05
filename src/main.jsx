@@ -16,7 +16,6 @@ import ConfirmPaymentPage from "./routes/ConfirmPaymentPage";
 import VideoPlayer from "./components/VideoPlayer";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
     <BrowserRouter>
       <Routes>
         {/* Home Routes */}
@@ -37,5 +36,4 @@ createRoot(document.getElementById("root")).render(
         <Route path="register" element={<RegisterPage />} />
       </Routes>
     </BrowserRouter>
-  </StrictMode>
 );
