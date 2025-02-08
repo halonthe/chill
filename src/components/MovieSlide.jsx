@@ -1,4 +1,3 @@
-
 const MovieSlide = ({ children, title }) => {
   return (
     <section className="max-w-[1440px] w-full px-5 sm:px-20 py-5 sm:py-10">

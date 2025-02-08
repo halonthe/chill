@@ -31,7 +31,14 @@ const Hero = ({ title, bg, showGenre, desc, onMoreBtnClick }) => {
             <Button
               label="Mulai"
               bgColor="bg-[#0F1E93]"
-              onClick={() => navigate("/watch/slug-or-title-or-id")}
+              onClick={() =>
+                navigate(
+                  `/watch/${title
+                    .toLowerCase()
+                    .replace(/\s/g, "-")
+                    .replace(/[^a-zA-Z0-9\-]/g, "")}`
+                )
+              }
             />
             <Button
               label="Selengkapnya"

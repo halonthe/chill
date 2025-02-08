@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Footer = () => {
   const genre = [
@@ -41,7 +41,10 @@ const Footer = () => {
           onClick={() => setOpenGenre(!openGenre)}
         >
           <p>Genre</p>
-          <img src="/img/chevron-right.png" className="w-6 h-6 sm:hidden" />
+          <img
+            src="/img/icons/chevron-right.png"
+            className="w-6 h-6 sm:hidden"
+          />
         </div>
         <ul className="hidden sm:grid grid-cols-3 gap-1 md:gap-x-3 sm:grid-cols-4 ">
           {genre.map((item) => (
@@ -67,7 +70,10 @@ const Footer = () => {
           onClick={() => setOpenHelp(!openHelp)}
         >
           <p>Bantuan</p>
-          <img src="/img/chevron-right.png" className="w-6 h-6 sm:hidden" />
+          <img
+            src="/img/icons/chevron-right.png"
+            className="w-6 h-6 sm:hidden"
+          />
         </div>
         <ul className="hidden sm:grid gap-1">
           {bantuan.map((item) => (

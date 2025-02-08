@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navbar from "./elements/Navbar";
 import DropDownProfile from "./elements/DropDownProfile";
 
-const Header = () => {
+const Header = ({ setLogined }) => {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
@@ -28,7 +28,9 @@ const Header = () => {
         />
       </div>
       {/* dropdown */}
-      {open && <DropDownProfile onClick={handleClick} />}
+      {open && (
+        <DropDownProfile setLogined={setLogined} onClick={handleClick} />
+      )}
     </header>
   );
 };

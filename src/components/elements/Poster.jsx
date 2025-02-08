@@ -25,7 +25,16 @@ const Poster = ({
         }  cursor-pointer rounded-md overflow-hidden`}
       >
         {/* img */}
-        <img src={src} alt={title} onClick={showDetail} className={` ${oriented === "landscape" ? "w-[302px] h-[162px]" : "w-[95px] h-[145px] sm:w-[234px] sm:h-[365px]"} object-cover`} />
+        <img
+          src={src}
+          alt={title}
+          onClick={showDetail}
+          className={` ${
+            oriented === "landscape"
+              ? "w-[302px] h-[162px]"
+              : "w-[95px] h-[145px] sm:w-[234px] sm:h-[365px]"
+          } object-cover`}
+        />
         {/* title and rating */}
         {oriented === "landscape" && (
           <div
@@ -35,7 +44,7 @@ const Poster = ({
             <p className="text-sm sm:text-lg line-clamp-1">{title}</p>
             <div className="flex items-center gap-1">
               <img src="/img/icons/star.png" alt="rating" />
-              <p className="text-sm sm:text-lg">{rating}/5</p>
+              <p className="text-sm sm:text-md">{rating}/5</p>
             </div>
           </div>
         )}
