@@ -1,7 +1,7 @@
-import InputForm from "./elements/InputForm";
+import InputForm from "../components/elements/InputForm";
 import { Link } from "react-router";
 
-const Auth = ({ type, onSubmit }) => {
+const AuthLayouts = ({ type, onSubmit }) => {
   return (
     <div className="flex items-center justify-center font-lato bg-[url('/img/background/bg-login.png')] w-full h-screen bg-no-repeat bg-cover bg-center">
       {/* container */}
@@ -84,4 +84,4 @@ const Auth = ({ type, onSubmit }) => {
   );
 };
 
-export default Auth;
+export default AuthLayouts;

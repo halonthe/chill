@@ -1,5 +1,5 @@
-import Auth from "../components/Auth";
 import { useNavigate } from "react-router";
+import AuthLayouts from "../layouts/AuthLayouts";
 
 const LoginPage = ({ setLogined }) => {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const LoginPage = ({ setLogined }) => {
     const data = Object.fromEntries(formData.entries());
 
     // get data dari localStorage
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    const localStorageData = JSON.parse(localStorage.getItem("user")) || {};
 
     // validasi
     const usernameInput = data.username;
@@ -23,7 +23,7 @@ const LoginPage = ({ setLogined }) => {
     // cek input form
     if (!data) return;
     if (usernameInput !== username) {
-      alert("user tidak ditemukan!");
+      alert("user tidak ditemukan! Daftar akun dahulu!");
       return;
     }
     if (passwordInput !== password) {
@@ -35,7 +35,7 @@ const LoginPage = ({ setLogined }) => {
     setLogined(true);
     navigate("/");
   };
-  return <Auth type="masuk" onSubmit={handleLogin} />;
+  return <AuthLayouts type="masuk" onSubmit={handleLogin} />;
 };
 
 export default LoginPage;

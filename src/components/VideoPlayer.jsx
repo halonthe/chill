@@ -64,7 +64,7 @@ const VideoPlayer = () => {
         <div className="flex gap-6 items-center">
           <img
             className="cursor-pointer w-7 h-7 lg:w-10 lg:h-10"
-            src="/img/icons/next.png"
+            src="/img/icons/skip.png"
             alt="next button"
             onMouseEnter={() => setNextEpisode(true)}
             onMouseLeave={() => setNextEpisode(false)}

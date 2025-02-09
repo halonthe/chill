@@ -28,7 +28,7 @@ const HomePage = () => {
   const [currentGenre, setCurrentGenre] = useState("");
   const [currentWritter, setCurrentWritter] = useState("");
   const [currentType, setCurrentType] = useState("");
-  const [currentFeatured, setCurrentFeatured] = useState([]);
+  const [isPremium, setIsPremium] = useState(false);
   // menampilakn pop-up
   const handlePopUpDetails = () => {
     setOpenDetails(true);
@@ -47,7 +47,7 @@ const HomePage = () => {
           genre={currentGenre}
           writter={currentWritter}
           type={currentType}
-          featured={currentFeatured}
+          isPremium={isPremium}
           onCloseBtnClick={() => setOpenDetails(!openDetails)}
         />
       )}
@@ -70,7 +70,7 @@ const HomePage = () => {
                 setCurrentGenre(item.Genre);
                 setCurrentWritter(item.Writer);
                 setCurrentType(item.Type);
-                setCurrentFeatured(item.Featured);
+                setIsPremium(item.Premium);
                 handlePopUpDetails();
               }}
               showGenre={false}
@@ -88,8 +88,9 @@ const HomePage = () => {
             oriented="landscape"
             src={item.Images.landscape}
             rating={item.ChillRating}
-            newEpisode={false}
-            topTen={false}
+            premium={item.Premium ? true : false}
+            newEpisode={item.Featured.includes("new-episode") ? true : false}
+            topTen={item.Featured.includes("trending") ? true : false}
             showDetail={() => {
               setCurrentTitle(item.Title);
               setCurrentBanner(item.Images.landscape);
@@ -100,7 +101,7 @@ const HomePage = () => {
               setCurrentGenre(item.Genre);
               setCurrentWritter(item.Writer);
               setCurrentType(item.Type);
-              setCurrentFeatured(item.Featured);
+              setIsPremium(item.Premium);
               handlePopUpDetails();
             }}
           />
@@ -108,7 +109,7 @@ const HomePage = () => {
       </MovieSlide>
 
       {/* Top Rating dan Series Hari ini */}
-      <MovieSlide title="Top Rating dan Series Hari ini">
+      <MovieSlide title="Top Rating Film dan Series Hari ini">
         {data.map(
           (item, index) =>
             item.ChillRating >= 4.5 && (
@@ -117,6 +118,7 @@ const HomePage = () => {
                 title={item.Title}
                 src={item.Images.potrait}
                 rating={item.ChillRating}
+                premium={item.Premium ? true : false}
                 newEpisode={
                   item.Featured.includes("new-episode") ? true : false
                 }
@@ -131,7 +133,7 @@ const HomePage = () => {
                   setCurrentGenre(item.Genre);
                   setCurrentWritter(item.Writer);
                   setCurrentType(item.Type);
-                  setCurrentFeatured(item.Featured);
+                  setIsPremium(item.Premium);
                   handlePopUpDetails();
                 }}
               />
@@ -149,6 +151,7 @@ const HomePage = () => {
                 title={item.Title}
                 src={item.Images.potrait}
                 rating={item.ChillRating}
+                premium={item.Premium ? true : false}
                 newEpisode={
                   item.Featured.includes("new-episode") ? true : false
                 }
@@ -163,7 +166,7 @@ const HomePage = () => {
                   setCurrentGenre(item.Genre);
                   setCurrentWritter(item.Writer);
                   setCurrentType(item.Type);
-                  setCurrentFeatured(item.Featured);
+                  setIsPremium(item.Premium);
                   handlePopUpDetails();
                 }}
               />
@@ -181,6 +184,7 @@ const HomePage = () => {
                 title={item.Title}
                 src={item.Images.potrait}
                 rating={item.ChillRating}
+                premium={item.Premium ? true : false}
                 newEpisode={
                   item.Featured.includes("new-episode") ? true : false
                 }
@@ -195,7 +199,7 @@ const HomePage = () => {
                   setCurrentGenre(item.Genre);
                   setCurrentWritter(item.Writer);
                   setCurrentType(item.Type);
-                  setCurrentFeatured(item.Featured);
+                  setIsPremium(item.Premium);
                   handlePopUpDetails();
                 }}
               />

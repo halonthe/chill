@@ -1,300 +1,253 @@
-import React, { useState } from "react";
 import Hero from "../components/Hero";
-import MovieSlide from "../components/MovieSlide";
 import Poster from "../components/elements/Poster";
+import MovieSlide from "../components/MovieSlide";
+import { useEffect, useState } from "react";
 import PopUpDetails from "../components/elements/PopUpDetails";
 
 const MoviePage = () => {
-  const data = [
-    // continue watching
-    {
-      title: "Don't Look Up",
-      rating: "4.5",
-      src: "/img/poster/landscape/recent-1.png",
-      type: "landscape",
-      newEpisode: false,
-      topTen: false,
-      group: ["recent"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "All of us are Dead",
-      rating: "4.2",
-      src: "/img/poster/landscape/recent-2.png",
-      type: "landscape",
-      newEpisode: false,
-      topTen: false,
-      group: ["recent"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "Blue Lock",
-      rating: "4.6",
-      src: "/img/poster/landscape/recent-3.png",
-      type: "landscape",
-      newEpisode: true,
-      topTen: false,
-      group: ["recent", "new_episode"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "A Man Called Otto",
-      rating: "4.4",
-      src: "/img/poster/landscape/recent-4.png",
-      type: "landscape",
-      newEpisode: false,
-      topTen: false,
-      group: ["recent"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    // mix
-    {
-      title: "Suzume",
-      rating: "4.4",
-      src: "/img/poster/potrait/mix-1.png",
-      type: "potrait",
-      newEpisode: true,
-      topTen: false,
-      group: ["mix", "new_episode"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "Jurassic World",
-      rating: "4.4",
-      src: "/img/poster/potrait/mix-2.png",
-      type: "potrait",
-      newEpisode: false,
-      topTen: false,
-      group: ["mix"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "Sonic",
-      rating: "4.4",
-      src: "/img/poster/potrait/mix-3.png",
-      type: "potrait",
-      newEpisode: false,
-      topTen: false,
-      group: ["mix"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "All of us are Dead",
-      rating: "4.4",
-      src: "/img/poster/potrait/mix-4.png",
-      type: "potrait",
-      newEpisode: true,
-      topTen: false,
-      group: ["mix", "new_episode"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "Big Hero 6",
-      rating: "4.4",
-      src: "/img/poster/potrait/mix-5.png",
-      type: "potrait",
-      newEpisode: false,
-      topTen: false,
-      group: ["mix"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    // trending
-    {
-      title: "The Tomorrow War",
-      rating: "4.4",
-      src: "/img/poster/potrait/trending-1.png",
-      type: "potrait",
-      newEpisode: false,
-      topTen: true,
-      group: ["trending", "top_ten"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "Quantumania",
-      rating: "4.4",
-      src: "/img/poster/potrait/trending-2.png",
-      type: "potrait",
-      newEpisode: false,
-      topTen: true,
-      group: ["trending", "top_ten"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "Guardian of the Galaxy",
-      rating: "4.4",
-      src: "/img/poster/potrait/trending-3.png",
-      type: "potrait",
-      newEpisode: false,
-      topTen: true,
-      group: ["trending", "top_ten"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "A Man Called Otto",
-      rating: "4.4",
-      src: "/img/poster/potrait/trending-4.png",
-      type: "potrait",
-      newEpisode: false,
-      topTen: true,
-      group: ["trending", "top_ten"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "The Little Mermaid",
-      rating: "4.4",
-      src: "/img/poster/potrait/trending-5.png",
-      type: "potrait",
-      newEpisode: false,
-      topTen: true,
-      group: ["trending", "top_ten"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    // new release
-    {
-      title: "The Little Mermaid",
-      rating: "4.4",
-      src: "/img/poster/potrait/trending-5.png",
-      type: "potrait",
-      newEpisode: false,
-      topTen: true,
-      group: ["trending", "new"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "Duty After School",
-      rating: "4.4",
-      src: "/img/poster/potrait/new-2.png",
-      type: "potrait",
-      newEpisode: true,
-      topTen: false,
-      group: ["new", "new_episode"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "Big Hero 6",
-      rating: "4.4",
-      src: "/img/poster/potrait/new-3.png",
-      type: "potrait",
-      newEpisode: false,
-      topTen: false,
-      group: ["new"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "All of us are Dead",
-      rating: "4.4",
-      src: "/img/poster/potrait/new-4.png",
-      type: "potrait",
-      newEpisode: true,
-      topTen: false,
-      group: ["new", "new_episode"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-    {
-      title: "Missinf",
-      rating: "4.4",
-      src: "/img/poster/potrait/new-5.png",
-      type: "potrait",
-      newEpisode: false,
-      topTen: false,
-      group: ["new"],
-      category: ["Action", "Drama", "Sci-Fi"],
-    },
-  ];
-  const hero = [
-    {
-      title: "Happiness",
-      bg: "/img/poster/hero/happiness.png",
-      showGenre: true,
-      desc: "Mengisahkan tentang kelompok orang yang berjuang untuk bertahan hidup di dalam sebuah gedung apartemen yang penuh dengan zombie. Sayangnya, virus zombie hanya terdapat di dalam area apartemen tersebut dan tidak menyebar ke luar kawasan apartemen.",
-    },
-  ];
+  // fetch data dari file ./public/database.json
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    try {
+      fetch("/database.json")
+        .then((res) => res.json())
+        .then((data) => setData(data));
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
-  const [openHoverSeries, setOpenHoverSeries] = useState(false);
+  // state modal atau pop-up
   const [openDetails, setOpenDetails] = useState(false);
-  const handleHover = () => {
-    setOpenHoverSeries(!openHoverSeries);
-  };
-  const handleDetails = () => {
-    setOpenDetails(!openDetails);
+  const [currentTitle, setCurrentTitle] = useState("");
+  const [currentBanner, setCurrentBanner] = useState("");
+  const [currentYears, setCurrentYears] = useState("");
+  const [currentRated, setCurrentRated] = useState("");
+  const [currentPlot, setCurrentPlot] = useState("");
+  const [currentActors, setCurrentActors] = useState("");
+  const [currentGenre, setCurrentGenre] = useState("");
+  const [currentWritter, setCurrentWritter] = useState("");
+  const [currentType, setCurrentType] = useState("");
+  const [isPremium, setIsPremium] = useState(false);
+  // menampilakn pop-up
+  const handlePopUpDetails = () => {
+    setOpenDetails(true);
   };
   return (
-    <div className="relative">
-      <>{openDetails && <PopUpDetails onCloseBtnClick={handleDetails} />}</>
-      {/* hero */}
-      <Hero {...hero[0]} onMoreBtnClick={handleDetails} />
-      {/* melanjutkan tonton Film */}
+    <>
+      {openDetails && (
+        <PopUpDetails
+          title={currentTitle}
+          banner={currentBanner}
+          years={currentYears}
+          rated={currentRated}
+          plot={currentPlot}
+          actors={currentActors}
+          genre={currentGenre}
+          writter={currentWritter}
+          type={currentType}
+          isPremium={isPremium}
+          onCloseBtnClick={() => setOpenDetails(!openDetails)}
+        />
+      )}
+
+      {/* Hero */}
+      {data.map(
+        (item, index) =>
+          item.Title === "Avatar" && (
+            <Hero
+              title={item.Title}
+              bg={item.Images.banner}
+              desc={item.Plot}
+              onMoreBtnClick={() => {
+                setCurrentTitle(item.Title);
+                setCurrentBanner(item.Images.landscape);
+                setCurrentYears(item.Year);
+                setCurrentRated(item.Rated);
+                setCurrentPlot(item.Plot);
+                setCurrentActors(item.Actors);
+                setCurrentGenre(item.Genre);
+                setCurrentWritter(item.Writer);
+                setCurrentType(item.Type);
+                setIsPremium(item.Premium);
+                handlePopUpDetails();
+              }}
+              showGenre={true}
+              key={index}
+            />
+          )
+      )}
+
+      {/* Recent */}
       <MovieSlide title="Melanjutkan Tonton Film">
         {data.map(
           (item, index) =>
-            item.group.includes("recent") && (
+            item.Type === "movie" && (
               <Poster
                 key={index}
-                {...item}
-                onHover={handleHover}
-                showDetail={handleDetails}
+                title={item.Title}
+                oriented="landscape"
+                src={item.Images.landscape}
+                rating={item.ChillRating}
+                premium={item.Premium ? true : false}
+                newEpisode={
+                  item.Featured.includes("new-episode") ? true : false
+                }
+                topTen={item.Featured.includes("trending") ? true : false}
+                showDetail={() => {
+                  setCurrentTitle(item.Title);
+                  setCurrentBanner(item.Images.landscape);
+                  setCurrentYears(item.Year);
+                  setCurrentRated(item.Rated);
+                  setCurrentPlot(item.Plot);
+                  setCurrentActors(item.Actors);
+                  setCurrentGenre(item.Genre);
+                  setCurrentWritter(item.Writer);
+                  setCurrentType(item.Type);
+                  setIsPremium(item.Premium);
+                  handlePopUpDetails();
+                }}
               />
             )
         )}
       </MovieSlide>
 
-      {/* Film persembahan chill */}
+      {/* Movie Persembahan Chill */}
       <MovieSlide title="Film Persembahan Chill">
         {data.map(
           (item, index) =>
-            item.group.includes("mix") && (
+            item.Type === "movie" &&
+            item.Premium === true && (
               <Poster
                 key={index}
-                {...item}
-                onHover={handleHover}
-                showDetail={handleDetails}
+                title={item.Title}
+                src={item.Images.potrait}
+                rating={item.ChillRating}
+                premium={item.Premium ? true : false}
+                newEpisode={
+                  item.Featured.includes("new-episode") ? true : false
+                }
+                topTen={item.Featured.includes("trending") ? true : false}
+                showDetail={() => {
+                  setCurrentTitle(item.Title);
+                  setCurrentBanner(item.Images.landscape);
+                  setCurrentYears(item.Year);
+                  setCurrentRated(item.Rated);
+                  setCurrentPlot(item.Plot);
+                  setCurrentActors(item.Actors);
+                  setCurrentGenre(item.Genre);
+                  setCurrentWritter(item.Writer);
+                  setCurrentType(item.Type);
+                  setIsPremium(item.Premium);
+                  handlePopUpDetails();
+                }}
               />
             )
         )}
       </MovieSlide>
-      {/* top rating Film hari ini */}
+
+      {/* Top Rating Movie Hari ini */}
       <MovieSlide title="Top Rating Film Hari ini">
         {data.map(
           (item, index) =>
-            item.group.includes("trending") && (
+            item.Type === "movie" &&
+            item.ChillRating >= 4.5 && (
               <Poster
                 key={index}
-                {...item}
-                onHover={handleHover}
-                showDetail={handleDetails}
+                title={item.Title}
+                src={item.Images.potrait}
+                rating={item.ChillRating}
+                premium={item.Premium ? true : false}
+                newEpisode={
+                  item.Featured.includes("new-episode") ? true : false
+                }
+                topTen={item.Featured.includes("trending") ? true : false}
+                showDetail={() => {
+                  setCurrentTitle(item.Title);
+                  setCurrentBanner(item.Images.landscape);
+                  setCurrentYears(item.Year);
+                  setCurrentRated(item.Rated);
+                  setCurrentPlot(item.Plot);
+                  setCurrentActors(item.Actors);
+                  setCurrentGenre(item.Genre);
+                  setCurrentWritter(item.Writer);
+                  setCurrentType(item.Type);
+                  setIsPremium(item.Premium);
+                  handlePopUpDetails();
+                }}
               />
             )
         )}
       </MovieSlide>
-      {/* Film trending */}
+
+      {/* Movie Trending */}
       <MovieSlide title="Film Trending">
         {data.map(
           (item, index) =>
-            item.group.includes("trending") && (
+            item.Featured.includes("trending") &&
+            item.Type === "movie" && (
               <Poster
                 key={index}
-                {...item}
-                onHover={handleHover}
-                showDetail={handleDetails}
+                title={item.Title}
+                src={item.Images.potrait}
+                rating={item.ChillRating}
+                premium={item.Premium ? true : false}
+                newEpisode={
+                  item.Featured.includes("new-episode") ? true : false
+                }
+                topTen={item.Featured.includes("trending") ? true : false}
+                showDetail={() => {
+                  setCurrentTitle(item.Title);
+                  setCurrentBanner(item.Images.landscape);
+                  setCurrentYears(item.Year);
+                  setCurrentRated(item.Rated);
+                  setCurrentPlot(item.Plot);
+                  setCurrentActors(item.Actors);
+                  setCurrentGenre(item.Genre);
+                  setCurrentWritter(item.Writer);
+                  setCurrentType(item.Type);
+                  setIsPremium(item.Premium);
+                  handlePopUpDetails();
+                }}
               />
             )
         )}
       </MovieSlide>
-      {/* rilis baru */}
+
+      {/* Rilis Baru */}
       <MovieSlide title="Rilis Baru">
         {data.map(
           (item, index) =>
-            item.group.includes("new") && (
+            item.Type === "movie" &&
+            Number(item.Year) >= 2025 && (
               <Poster
                 key={index}
-                {...item}
-                onHover={handleHover}
-                showDetail={handleDetails}
+                title={item.Title}
+                src={item.Images.potrait}
+                rating={item.ChillRating}
+                premium={item.Premium ? true : false}
+                newEpisode={
+                  item.Featured.includes("new-episode") ? true : false
+                }
+                topTen={item.Featured.includes("trending") ? true : false}
+                showDetail={() => {
+                  setCurrentTitle(item.Title);
+                  setCurrentBanner(item.Images.landscape);
+                  setCurrentYears(item.Year);
+                  setCurrentRated(item.Rated);
+                  setCurrentPlot(item.Plot);
+                  setCurrentActors(item.Actors);
+                  setCurrentGenre(item.Genre);
+                  setCurrentWritter(item.Writer);
+                  setCurrentType(item.Type);
+                  setIsPremium(item.Premium);
+                  handlePopUpDetails();
+                }}
               />
             )
         )}
       </MovieSlide>
-    </div>
+    </>
   );
 };
 

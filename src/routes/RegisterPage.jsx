@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import Auth from "../components/Auth";
+import AuthLayouts from "../layouts/AuthLayouts";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const RegisterPage = () => {
     // redirect ke halaman login setelah daftar
     navigate("/login");
   };
-  return <Auth type="daftar" onSubmit={handleRegister} />;
+  return <AuthLayouts type="daftar" onSubmit={handleRegister} />;
 };
 
 export default RegisterPage;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const DropDownGenre = () => {
   const data = [
@@ -26,7 +26,7 @@ const DropDownGenre = () => {
         onClick={() => setOpen(!open)}
       >
         <span>Genre</span>
-        <img src="/img/KeyboardArrowDown.png" alt="" />
+        <img src="/img/icons/KeyboardArrowDown.png" alt="" />
       </div>
       {/* show genre list*/}
       {open && (

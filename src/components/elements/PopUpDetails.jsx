@@ -15,7 +15,7 @@ const PopUpDetails = ({
   writter,
   banner,
   type,
-  featured,
+  isPremium,
 }) => {
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ const PopUpDetails = ({
         {/* header */}
         <div className="w-full relative">
           {/* gradient effect */}
-          <div className="absolute top-0 left-0 w-full h-[554px] bg-gradient-to-b to-[#181A1C] from-transparent"></div>
+          <div className="absolute top-0 left-0 w-full h-[190px] md:h-[554px] bg-gradient-to-b to-[#181A1C] from-transparent"></div>
           {/* image */}
           <img
             src={banner}
@@ -73,7 +73,7 @@ const PopUpDetails = ({
                   <div className="w-6 h-6 md:w-9 md:h-9 rounded-full border border-white flex items-center justify-center text-xs md:text-2xl cursor-pointer">
                     +
                   </div>
-                  {featured.includes("premium") && (
+                  {isPremium && (
                     <div className="bg-[#B7A207] rounded-3xl py-1 px-2 text-[6px] md:text-sm">
                       <p>Premium</p>
                     </div>

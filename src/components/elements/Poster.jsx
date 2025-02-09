@@ -6,16 +6,22 @@ const Poster = ({
   title,
   rating,
   src,
+  premium,
   newEpisode,
   topTen,
   showDetail,
 }) => {
   const [hover, setHover] = useState(false);
-  const handleHover = () => setHover(!hover);
+
   return (
     <>
       {hover && (
-        <HoverSeries outHover={handleHover} src={src} showDetail={showDetail} />
+        <HoverSeries
+          outHover={() => setHover(!hover)}
+          src={src}
+          showDetail={showDetail}
+          top={top}
+        />
       )}
       <div
         className={`relative ${
@@ -48,10 +54,17 @@ const Poster = ({
             </div>
           </div>
         )}
+
         {/* label: new episode */}
-        {newEpisode && (
+        {newEpisode && !premium && (
           <div className="absolute top-0 left-0 m-1 sm:m-3 h-4 sm:h-7 bg-[#0F1E93] p-2 sm:p-3 rounded-3xl flex items-center justify-center">
             <p className="text-[6px] sm:text-sm">Episode Baru</p>
+          </div>
+        )}
+        {/* label: premium */}
+        {premium && (
+          <div className="absolute top-0 left-0 m-1 sm:m-3 h-4 sm:h-7 bg-[#B7A207] p-2 sm:p-3 rounded-3xl flex items-center justify-center">
+            <p className="text-[6px] sm:text-sm">Premium</p>
           </div>
         )}
         {/* label: top 10 */}

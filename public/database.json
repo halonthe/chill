@@ -15,6 +15,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.4",
     "Type": "movie",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/avatar.png",
@@ -24,7 +25,7 @@
   },
   {
     "Title": "Shazam! Fury of the Gods",
-    "Year": "2019",
+    "Year": "2025",
     "Rated": "PG-13",
     "Released": "18 Dec 2009",
     "Runtime": "162 min",
@@ -38,7 +39,8 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "3.0",
     "Type": "movie",
-    "Featured": [],
+    "Premium": false,
+    "Featured": ["trending"],
     "Images": {
       "potrait": "/img/poster/potrait/shazam.png",
       "landscape": "/img/poster/landscape/shazam.png",
@@ -61,6 +63,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "2.9",
     "Type": "series",
+    "Premium": false,
     "Featured": ["new-episode", "trending"],
     "Images": {
       "potrait": "/img/poster/potrait/blue-lock.png",
@@ -84,6 +87,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "series",
+    "Premium": false,
     "Featured": ["trending"],
     "Images": {
       "potrait": "/img/poster/potrait/a-man-called-otto.png",
@@ -107,6 +111,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "series",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/jurassic-world.png",
@@ -130,6 +135,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "series",
+    "Premium": false,
     "Featured": ["trending"],
     "Images": {
       "potrait": "/img/poster/potrait/tomorrow-war.png",
@@ -153,6 +159,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "series",
+    "Premium": false,
     "Featured": ["new-episode"],
     "Images": {
       "potrait": "/img/poster/potrait/quantumania.png",
@@ -176,6 +183,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "series",
+    "Premium": false,
     "Featured": ["trending"],
     "Images": {
       "potrait": "/img/poster/potrait/guardian-of-the-galaxy.png",
@@ -199,6 +207,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "series",
+    "Premium": true,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/little-mermaid.png",
@@ -222,6 +231,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "series",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/all-of-us-are-dead.png",
@@ -245,6 +255,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "series",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/big-hero-6.png",
@@ -268,6 +279,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "series",
+    "Premium": true,
     "Featured": ["new-episode", "premium"],
     "Images": {
       "potrait": "/img/poster/potrait/duty-after-school.png",
@@ -291,6 +303,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "series",
+    "Premium": true,
     "Featured": ["new-episode", "premium"],
     "Images": {
       "potrait": "/img/poster/potrait/korea.png",
@@ -300,7 +313,7 @@
   },
   {
     "Title": "Batman",
-    "Year": "2019",
+    "Year": "2025",
     "Rated": "PG-13",
     "Released": "18 Dec 2009",
     "Runtime": "162 min",
@@ -313,7 +326,8 @@
     "Country": "USA, UK",
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
-    "Type": "series",
+    "Type": "movie",
+    "Premium": true,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/batman.png",
@@ -337,7 +351,8 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
-    "Featured": [],
+    "Premium": false,
+    "Featured": ["trending"],
     "Images": {
       "potrait": "/img/poster/potrait/alice.png",
       "landscape": "/img/poster/landscape/alice.png",
@@ -359,7 +374,8 @@
     "Country": "USA, UK",
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
-    "Type": "movie",
+    "Type": "series",
+    "Premium": true,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/missing.png",
@@ -382,8 +398,9 @@
     "Country": "USA, UK",
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
-    "Type": "movie",
-    "Featured": [],
+    "Type": "series",
+    "Premium": true,
+    "Featured": ["new-episode", "trending"],
     "Images": {
       "potrait": "/img/poster/potrait/suzume.png",
       "landscape": "/img/poster/landscape/suzume.png",
@@ -406,7 +423,8 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
-    "Featured": [],
+    "Premium": true,
+    "Featured": ["trending"],
     "Images": {
       "potrait": "/img/poster/potrait/megan.png",
       "landscape": "/img/poster/landscape/megan.png",
@@ -429,6 +447,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/my-hero-academia.png",
@@ -452,6 +471,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/doctor-strange.png",
@@ -475,6 +495,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/fast-x.png",
@@ -498,7 +519,8 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
-    "Featured": [],
+    "Premium": true,
+    "Featured": ["trending"],
     "Images": {
       "potrait": "/img/poster/potrait/dont-look-up.png",
       "landscape": "/img/poster/landscape/dont-look-up.png",
@@ -521,6 +543,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/black-adam.png",
@@ -544,6 +567,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/the-devil-all-the-time.png",
@@ -567,6 +591,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/ted-lasso.png",
@@ -590,6 +615,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/stuart-little.png",
@@ -599,7 +625,7 @@
   },
   {
     "Title": "Baymax!",
-    "Year": "2019",
+    "Year": "2025",
     "Rated": "PG-13",
     "Released": "18 Dec 2009",
     "Runtime": "162 min",
@@ -613,6 +639,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": true,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/baymax.png",
@@ -622,7 +649,7 @@
   },
   {
     "Title": "Dilan",
-    "Year": "2021",
+    "Year": "2025",
     "Rated": "PG-13",
     "Released": "18 Dec 2009",
     "Runtime": "162 min",
@@ -636,6 +663,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": false,
     "Featured": ["trending"],
     "Images": {
       "potrait": "/img/poster/potrait/dilan.png",
@@ -659,6 +687,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/happiness.png",
@@ -682,6 +711,7 @@
     "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/sonic-2.png",
@@ -705,6 +735,7 @@
     "Awards": "Won 2 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": false,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/spider-man.png",
@@ -714,7 +745,7 @@
   },
   {
     "Title": "Rio",
-    "Year": "2013",
+    "Year": "2025",
     "Rated": "PG-13",
     "Released": "2013-07-31",
     "Runtime": "142 min",
@@ -728,6 +759,7 @@
     "Awards": "Won 2 Oscars. Another 80 wins & 121 nominations.",
     "ChillRating": "4.9",
     "Type": "movie",
+    "Premium": true,
     "Featured": [],
     "Images": {
       "potrait": "/img/poster/potrait/rio.png",

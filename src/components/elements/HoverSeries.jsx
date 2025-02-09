@@ -1,12 +1,10 @@
-import React, { useState } from "react";
 import { FaCheck, FaChevronDown, FaPlay } from "react-icons/fa6";
-import PopUpDetails from "./PopUpDetails";
 
-const HoverSeries = ({ outHover, src, showDetail }) => {
+const HoverSeries = ({ outHover, src, showDetail, top }) => {
   return (
     <div
       onMouseLeave={outHover}
-      className="absolute -left-14 w-[410px] h-[495px] z-10 flex flex-col"
+      className={`absolute ${top} w-[410px] h-[495px] z-10 flex flex-col`}
     >
       {/* img */}
       <div className="h-1/2 w-full">
