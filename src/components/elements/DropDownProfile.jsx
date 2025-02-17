@@ -2,9 +2,10 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { FaStar, FaUser } from "react-icons/fa6";
 import { Link } from "react-router";
 
-const DropDownProfile = ({ onClick, setLogined }) => {
+const DropDownProfile = ({ onClick }) => {
   const handleLogout = () => {
-    setLogined(false);
+    localStorage.removeItem("token");
+    window.location.reload();
   };
   return (
     <div className="absolute w-[113px] h-[104px] sm:w-[156px] sm:h-[128px] top-10 right-5 bg-[#181A1C] sm:top-20 sm:right-8 flex flex-col items-center justify-around rounded-md drop-shadow-sm">

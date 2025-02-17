@@ -15,9 +15,8 @@ const RegisterPage = () => {
     const password = data["kata-sandi"];
     const confirmPassword = data["konfirmasi-kata-sandi"];
 
-    // return jika input kosong
+    // cek user input
     if (!data) return;
-    // alert jika password !== confirmPassword
     if (password !== confirmPassword) {
       alert("konfirmasi password salah!");
       return;

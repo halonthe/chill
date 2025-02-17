@@ -13,20 +13,18 @@ import PaymentPage from "./routes/PaymentPage";
 import ConfirmPaymentPage from "./routes/ConfirmPaymentPage";
 import VideoPlayer from "./components/VideoPlayer";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
-import { useState } from "react";
 
 const App = () => {
-  const [logined, setLogined] = useState(false);
   return (
     <BrowserRouter>
       <Routes>
         {/* Auth Routes */}
-        <Route path="login" element={<LoginPage setLogined={setLogined} />} />
+        <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
 
-        <Route element={<ProtectedRoutes logined={logined} />}>
+        <Route element={<ProtectedRoutes />}>
           {/* Home Routes */}
-          <Route element={<MainLayout setLogined={setLogined} />}>
+          <Route element={<MainLayout />}>
             <Route index element={<HomePage />} />
             <Route path="series" element={<SeriesPage />} />
             <Route path="film" element={<MoviePage />} />
@@ -36,6 +34,7 @@ const App = () => {
             <Route path="payments" element={<PaymentPage />} />
             <Route path="payments/:slug" element={<ConfirmPaymentPage />} />
           </Route>
+
           {/* watch */}
           <Route path="watch/:slug" element={<VideoPlayer />} />
         </Route>
