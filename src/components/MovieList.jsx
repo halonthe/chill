@@ -1,5 +1,3 @@
-import React from "react";
-
 const MovieList = ({ title, children }) => {
   return (
     <section className="max-w-[1440px] w-full my-10 sm:my-20 px-5 sm:px-20 py-5 sm:py-10">

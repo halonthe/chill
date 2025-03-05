@@ -1,8 +1,9 @@
 import { create } from "zustand";
 
-const useMovie = create((set) => ({
-  movie: {
+const useDetailMovie = create((set) => ({
+  detailMovie: {
     title: "",
+    poster:"",
     banner: "",
     year: "",
     rated: "",
@@ -13,7 +14,7 @@ const useMovie = create((set) => ({
     type: "",
     isPremium: false,
   },
-  setMovie: (newMovie) => set({ movie: newMovie }),
+  setDetailMovie: (newDetailMovie) => set({ detailMovie: newDetailMovie }),
 }));
 
-export default useMovie;
+export default useDetailMovie;

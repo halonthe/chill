@@ -3,13 +3,13 @@ import Hero from "../components/Hero";
 import Poster from "../components/elements/Poster";
 import MovieSlide from "../components/MovieSlide";
 import PopUpDetails from "../components/elements/PopUpDetails";
-import useMovie from "../store/useMovie";
+import useDetailMovie from "../store/useDetailMovie";
 import { useFetchMovie } from "../hooks/useFetchMovie";
 
 const HomePage = () => {
   const [openDetails, setOpenDetails] = useState(false);
-  const { setMovie } = useMovie();
-  const { data, loading } = useFetchMovie();
+  const { setDetailMovie } = useDetailMovie();
+  const { dataMovie, loading } = useFetchMovie();
 
   if (loading) return <div>Loading...</div>;
   return (
@@ -19,7 +19,7 @@ const HomePage = () => {
       )}
 
       {/* Hero */}
-      {data.map(
+      {dataMovie.map(
         (item, index) =>
           item.Title === "Duty After School" && (
             <Hero
@@ -27,8 +27,9 @@ const HomePage = () => {
               bg={item.Images.banner}
               desc={item.Plot}
               onMoreBtnClick={() => {
-                setMovie({
+                setDetailMovie({
                   title: item.Title,
+                  poster: item.Images.potrait,
                   banner: item.Images.landscape,
                   year: item.Year,
                   rated: item.Rated,
@@ -49,7 +50,7 @@ const HomePage = () => {
 
       {/* Recent */}
       <MovieSlide title="Melanjutkan Tonton Film">
-        {data.map((item, index) => (
+        {dataMovie.map((item, index) => (
           <Poster
             key={index}
             title={item.Title}
@@ -60,8 +61,9 @@ const HomePage = () => {
             newEpisode={item.Featured.includes("new-episode") ? true : false}
             topTen={item.Featured.includes("trending") ? true : false}
             showDetail={() => {
-              setMovie({
+              setDetailMovie({
                 title: item.Title,
+                poster: item.Images.potrait,
                 banner: item.Images.landscape,
                 year: item.Year,
                 rated: item.Rated,
@@ -80,7 +82,7 @@ const HomePage = () => {
 
       {/* Top Rating dan Series Hari ini */}
       <MovieSlide title="Top Rating Film dan Series Hari ini">
-        {data.map(
+        {dataMovie.map(
           (item, index) =>
             item.ChillRating >= 4.5 && (
               <Poster
@@ -94,8 +96,9 @@ const HomePage = () => {
                 }
                 topTen={item.Featured.includes("trending") ? true : false}
                 showDetail={() => {
-                  setMovie({
+                  setDetailMovie({
                     title: item.Title,
+                    poster: item.Images.potrait,
                     banner: item.Images.landscape,
                     year: item.Year,
                     rated: item.Rated,
@@ -115,7 +118,7 @@ const HomePage = () => {
 
       {/* Film Trending */}
       <MovieSlide title="Film Trending">
-        {data.map(
+        {dataMovie.map(
           (item, index) =>
             item.Featured.includes("trending") && (
               <Poster
@@ -129,8 +132,9 @@ const HomePage = () => {
                 }
                 topTen={item.Featured.includes("trending") ? true : false}
                 showDetail={() => {
-                  setMovie({
+                  setDetailMovie({
                     title: item.Title,
+                    poster: item.Images.potrait,
                     banner: item.Images.landscape,
                     year: item.Year,
                     rated: item.Rated,
@@ -150,7 +154,7 @@ const HomePage = () => {
 
       {/* Rilis Baru */}
       <MovieSlide title="Rilis Baru">
-        {data.map(
+        {dataMovie.map(
           (item, index) =>
             Number(item.Year) >= 2025 && (
               <Poster
@@ -164,8 +168,9 @@ const HomePage = () => {
                 }
                 topTen={item.Featured.includes("trending") ? true : false}
                 showDetail={() => {
-                  setMovie({
+                  setDetailMovie({
                     title: item.Title,
+                    poster: item.Images.potrait,
                     banner: item.Images.landscape,
                     year: item.Year,
                     rated: item.Rated,

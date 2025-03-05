@@ -2,13 +2,13 @@ import { useState } from "react";
 import PopUpDetails from "../components/elements/PopUpDetails";
 import MovieList from "../components/MovieList";
 import Poster from "../components/elements/Poster";
-import useMovie from "../store/useMovie";
-import { useFetchMovie } from "../hooks/useFetchMovie";
+import useDetailMovie from "../store/useDetailMovie";
+import { useMyList } from "../hooks/useMyList";
 
 const MyListPage = () => {
   const [openDetails, setOpenDetails] = useState(false);
-  const { setMovie } = useMovie();
-  const { data, loading } = useFetchMovie();
+  const { setDetailMovie } = useDetailMovie();
+  const { loading, myListData } = useMyList();
 
   if (loading) return <div>Loading...</div>;
   return (
@@ -16,31 +16,36 @@ const MyListPage = () => {
       {openDetails && (
         <PopUpDetails onCloseBtnClick={() => setOpenDetails(!openDetails)} />
       )}
+
       <MovieList title="Daftar Saya">
-        {data.map((item, index) => (
-          <Poster
-            key={index}
-            title={item.Title}
-            oriented="potrait"
-            src={item.Images.potrait}
-            rating={item.ChillRating}
-            showDetail={() => {
-              setMovie({
-                title: item.Title,
-                banner: item.Images.landscape,
-                year: item.Year,
-                rated: item.Rated,
-                plot: item.Plot,
-                actors: item.Actors,
-                genre: item.Genre,
-                writer: item.Writer,
-                type: item.Type,
-                isPremium: item.Premium,
-              });
-              setOpenDetails(true);
-            }}
-          />
-        ))}
+        {myListData.length > 0 ? (
+          myListData.map((item, index) => (
+            <Poster
+              key={index}
+              title={item.title}
+              oriented="potrait"
+              src={item.poster}
+              showDetail={() => {
+                setDetailMovie({
+                  title: item.title,
+                  poster: item.poster,
+                  banner: item.banner,
+                  year: item.year,
+                  rated: item.rated,
+                  plot: item.plot,
+                  actors: item.actors,
+                  genre: item.genre,
+                  writer: item.writer,
+                  type: item.type,
+                  isPremium: item.isPremium,
+                });
+                setOpenDetails(true);
+              }}
+            />
+          ))
+        ) : (
+          <div>Tidak ada data</div>
+        )}
       </MovieList>
     </>
   );

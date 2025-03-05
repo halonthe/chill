@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
 export const useFetchMovie = () => {
-  const [data, setData] = useState([]);
+  const [dataMovie, setDataMovie] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const response = await fetch("/database.json");
+        const response = await fetch("/movieDatabase.json");
         const data = await response.json();
-        setData(data);
+        setDataMovie(data);
       } catch (error) {
         console.log(error);
       } finally {
@@ -19,5 +19,5 @@ export const useFetchMovie = () => {
     fetchMovie();
   }, []);
 
-  return { data, loading };
+  return { dataMovie, loading };
 };

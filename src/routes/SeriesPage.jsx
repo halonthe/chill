@@ -3,13 +3,13 @@ import Poster from "../components/elements/Poster";
 import MovieSlide from "../components/MovieSlide";
 import { useState } from "react";
 import PopUpDetails from "../components/elements/PopUpDetails";
-import useMovie from "../store/useMovie";
 import { useFetchMovie } from "../hooks/useFetchMovie";
+import useDetailMovie from "../store/useDetailMovie";
 
 const SeriesPage = () => {
   const [openDetails, setOpenDetails] = useState(false);
-  const { setMovie } = useMovie();
-  const { data, loading } = useFetchMovie();
+  const { setDetailMovie } = useDetailMovie();
+  const { dataMovie, loading } = useFetchMovie();
 
   if (loading) return <div>Loading...</div>;
   return (
@@ -19,7 +19,7 @@ const SeriesPage = () => {
       )}
 
       {/* Hero */}
-      {data.map(
+      {dataMovie.map(
         (item, index) =>
           item.Title === "Happiness" && (
             <Hero
@@ -27,8 +27,9 @@ const SeriesPage = () => {
               bg={item.Images.banner}
               desc={item.Plot}
               onMoreBtnClick={() => {
-                setMovie({
+                setDetailMovie({
                   title: item.Title,
+                  poster: item.Images.potrait,
                   banner: item.Images.landscape,
                   year: item.Year,
                   rated: item.Rated,
@@ -49,7 +50,7 @@ const SeriesPage = () => {
 
       {/* Recent */}
       <MovieSlide title="Melanjutkan Tonton Series">
-        {data.map(
+        {dataMovie.map(
           (item, index) =>
             item.Type === "series" && (
               <Poster
@@ -64,8 +65,9 @@ const SeriesPage = () => {
                 }
                 topTen={item.Featured.includes("trending") ? true : false}
                 showDetail={() => {
-                  setMovie({
+                  setDetailMovie({
                     title: item.Title,
+                    poster: item.Images.potrait,
                     banner: item.Images.landscape,
                     year: item.Year,
                     rated: item.Rated,
@@ -85,7 +87,7 @@ const SeriesPage = () => {
 
       {/* Series Persembahan Chill */}
       <MovieSlide title="Series Persembahan Chill">
-        {data.map(
+        {dataMovie.map(
           (item, index) =>
             item.Type === "series" &&
             item.Premium === true && (
@@ -100,8 +102,9 @@ const SeriesPage = () => {
                 }
                 topTen={item.Featured.includes("trending") ? true : false}
                 showDetail={() => {
-                  setMovie({
+                  setDetailMovie({
                     title: item.Title,
+                    poster: item.Images.potrait,
                     banner: item.Images.landscape,
                     year: item.Year,
                     rated: item.Rated,
@@ -121,7 +124,7 @@ const SeriesPage = () => {
 
       {/* Top Rating Series Hari ini */}
       <MovieSlide title="Top Rating Series Hari ini">
-        {data.map(
+        {dataMovie.map(
           (item, index) =>
             item.Type === "series" &&
             item.ChillRating >= 4.5 && (
@@ -136,8 +139,9 @@ const SeriesPage = () => {
                 }
                 topTen={item.Featured.includes("trending") ? true : false}
                 showDetail={() => {
-                  setMovie({
+                  setDetailMovie({
                     title: item.Title,
+                    poster: item.Images.potrait,
                     banner: item.Images.landscape,
                     year: item.Year,
                     rated: item.Rated,
@@ -157,7 +161,7 @@ const SeriesPage = () => {
 
       {/* Series Trending */}
       <MovieSlide title="Series Trending">
-        {data.map(
+        {dataMovie.map(
           (item, index) =>
             item.Featured.includes("trending") &&
             item.Type === "series" && (
@@ -172,8 +176,9 @@ const SeriesPage = () => {
                 }
                 topTen={item.Featured.includes("trending") ? true : false}
                 showDetail={() => {
-                  setMovie({
+                  setDetailMovie({
                     title: item.Title,
+                    poster: item.Images.potrait,
                     banner: item.Images.landscape,
                     year: item.Year,
                     rated: item.Rated,
@@ -193,7 +198,7 @@ const SeriesPage = () => {
 
       {/* Rilis Baru */}
       <MovieSlide title="Rilis Baru">
-        {data.map(
+        {dataMovie.map(
           (item, index) =>
             item.Type === "series" &&
             Number(item.Year) >= 2025 && (
@@ -208,8 +213,9 @@ const SeriesPage = () => {
                 }
                 topTen={item.Featured.includes("trending") ? true : false}
                 showDetail={() => {
-                  setMovie({
+                  setDetailMovie({
                     title: item.Title,
+                    poster: item.Images.potrait,
                     banner: item.Images.landscape,
                     year: item.Year,
                     rated: item.Rated,

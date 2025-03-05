@@ -31,7 +31,7 @@ const LoginPage = () => {
     }
 
     // buat token & redirect ke halaman home jika berhasil login
-    localStorage.setItem("token", "pura-pura token");
+    localStorage.setItem("token", "ini pura-pura nya token");
     navigate("/");
   };
   return <AuthLayouts type="masuk" onSubmit={handleLogin} />;

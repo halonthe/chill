@@ -2,13 +2,13 @@ import { useState } from "react";
 import Navbar from "./elements/Navbar";
 import DropDownProfile from "./elements/DropDownProfile";
 
-const Header = ({ setLogined }) => {
+const Header = () => {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
   };
   return (
-    <header className="max-w-[1440px] w-full h-[56px] fixed z-50 flex justify-between items-center px-5 bg-[#181A1C] sm:px-20 sm:h-[94px]">
+    <header className="max-w-[1440px] w-full h-[56px] fixed z-40 flex justify-between items-center px-5 bg-[#181A1C] sm:px-20 sm:h-[94px]">
       {/* Navbar */}
       <Navbar />
       {/* Profile */}
@@ -28,9 +28,7 @@ const Header = ({ setLogined }) => {
         />
       </div>
       {/* dropdown */}
-      {open && (
-        <DropDownProfile setLogined={setLogined} onClick={handleClick} />
-      )}
+      {open && <DropDownProfile onClick={handleClick} />}
     </header>
   );
 };
