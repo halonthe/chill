@@ -18,34 +18,30 @@ const MyListPage = () => {
       )}
 
       <MovieList title="Daftar Saya">
-        {myListData.length > 0 ? (
-          myListData.map((item, index) => (
-            <Poster
-              key={index}
-              title={item.title}
-              oriented="potrait"
-              src={item.poster}
-              showDetail={() => {
-                setDetailMovie({
-                  title: item.title,
-                  poster: item.poster,
-                  banner: item.banner,
-                  year: item.year,
-                  rated: item.rated,
-                  plot: item.plot,
-                  actors: item.actors,
-                  genre: item.genre,
-                  writer: item.writer,
-                  type: item.type,
-                  isPremium: item.isPremium,
-                });
-                setOpenDetails(true);
-              }}
-            />
-          ))
-        ) : (
-          <div>Tidak ada data</div>
-        )}
+        {myListData.map((item, index) => (
+          <Poster
+            key={index}
+            title={item.title}
+            oriented="potrait"
+            src={item.poster}
+            showDetail={() => {
+              setDetailMovie({
+                title: item.title,
+                poster: item.poster,
+                banner: item.banner,
+                year: item.year,
+                rated: item.rated,
+                plot: item.plot,
+                actors: item.actors,
+                genre: item.genre,
+                writer: item.writer,
+                type: item.type,
+                isPremium: item.isPremium,
+              });
+              setOpenDetails(true);
+            }}
+          />
+        ))}
       </MovieList>
     </>
   );
