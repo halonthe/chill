@@ -15,8 +15,8 @@ const ProfilePage = () => {
 
   // update profile
   const [avatar, setAvatar] = useState(null);
-  const token = localStorage.getItem("token");
-  const userData = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem("token") || "";
+  const userData = JSON.parse(localStorage.getItem("user")) || [];
 
   const handleUpdateProfile = (e) => {
     e.preventDefault();
@@ -125,42 +125,6 @@ const ProfilePage = () => {
           </div>
         </div>
         {/* mylist */}
-        <div className="w-full py-5 sm:py-10">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xl sm:text-3xl">Daftar Saya</h3>
-            <Link to="/daftar-saya">
-              <span className="text-[#9D9EA1] hover:text-[#3254FF]">
-                Lihat Semua
-              </span>
-            </Link>
-          </div>
-          <div className="flex flex-wrap md:grid md:grid-flow-col md:overflow-x-auto gap-4 md:gap-7 mt-5">
-            {myListData.map((item, index) => (
-              <Poster
-                key={index}
-                title={item.title}
-                oriented="potrait"
-                src={item.poster}
-                showDetail={() => {
-                  setDetailMovie({
-                    title: item.title,
-                    poster: item.poster,
-                    banner: item.banner,
-                    year: item.year,
-                    rated: item.rated,
-                    plot: item.plot,
-                    actors: item.actors,
-                    genre: item.genre,
-                    writer: item.writer,
-                    type: item.type,
-                    isPremium: item.isPremium,
-                  });
-                  setOpenDetails(true);
-                }}
-              />
-            ))}
-          </div>
-        </div>
       </section>
     </>
   );
