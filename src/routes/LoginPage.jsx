@@ -16,22 +16,21 @@ const LoginPage = () => {
 
     // get data dari localStorage
     const localStorageData = JSON.parse(localStorage.getItem("user")) || [];
-    const username = localStorageData.username;
-    const password = localStorageData["kata-sandi"];
 
     // cek user input
-    if (!data) return;
-    if (usernameInput !== username) {
+    const userData = localStorageData.find(
+      (user) => user.username === usernameInput
+    );
+
+    if (!userData) {
       alert("user tidak ditemukan!");
-      return;
     }
-    if (passwordInput !== password) {
+    if (passwordInput !== userData["kata-sandi"]) {
       alert("password salah!");
       return;
     }
-
-    // buat token & redirect ke halaman home jika berhasil login
-    localStorage.setItem("token", "ini pura-pura nya token");
+    // pura-pura buat token & redirect ke halaman home jika berhasil login
+    localStorage.setItem("token", userData.username);
     navigate("/");
   };
   return <AuthLayouts type="masuk" onSubmit={handleLogin} />;

@@ -1,11 +1,10 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaPen, FaRegFileImage } from "react-icons/fa6";
 import { Link } from "react-router";
 import Poster from "../components/elements/Poster";
 // import CardRegular from "../components/elements/CardRegular";
 import CardPremium from "../components/elements/CardPremium";
 import PopUpDetails from "../components/elements/PopUpDetails";
-import { useMyList } from "../hooks/useMyList";
 import useDetailMovie from "../store/useDetailMovie";
 
 const ProfilePage = () => {
@@ -17,9 +16,51 @@ const ProfilePage = () => {
 
   // update profile
   const [avatar, setAvatar] = useState(null);
+  const [userData, setUserData] = useState([]);
+  const token = localStorage.getItem("token");
+
+  // fetch user data
+  useEffect(() => {
+    const fetchUserData = () => {
+      try {
+        const data = JSON.parse(localStorage.getItem("user"));
+        setUserData(data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUserData();
+  }, []);
 
   const handleUpdateProfile = (e) => {
-    console.log(e);
+    e.preventDefault();
+
+    // get data dari input form
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    const usernameInput = data.username;
+    const passwordInput = data.password;
+    let profileObj = {};
+
+    // update current user data
+    const currentUser = userData.filter((user) => user.username === token);
+    profileObj = {
+      username: usernameInput || currentUser[0].username,
+      password: passwordInput || currentUser[0].password,
+    };
+
+    // kalau username diedit, token diganti
+    if (usernameInput) {
+      localStorage.removeItem("token");
+      localStorage.setItem("token", usernameInput);
+    }
+
+    // simpan perubahan ke localstorage
+    const filteredUser = userData.filter((user) => user.username !== token);
+    const editedUser = [...filteredUser, profileObj];
+    localStorage.setItem("user", JSON.stringify(editedUser));
   };
 
   // pop up detail movie
@@ -27,9 +68,24 @@ const ProfilePage = () => {
   const { setDetailMovie } = useDetailMovie();
 
   // my-list data
-  const { loading, myListData } = useMyList();
-  if (loading) return <div>Loading...</div>;
+  const [myListData, setMyListData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchMyList = () => {
+      try {
+        const data = JSON.parse(localStorage.getItem("myList")) || [];
+        setMyListData(data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMyList();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
   return (
     <>
       {openDetails && (
@@ -45,122 +101,130 @@ const ProfilePage = () => {
           </div>
           {/* update profile */}
           <div className="w-full md:w-1/2">
-            <h3 className="text-xl sm:text-3xl">Profile Saya</h3>
-            {/* picture */}
-            <div className="flex items-center my-5 md:my-8 gap-6">
-              <img
-                src={avatar ? avatar : "/img/icons/profile.png"}
-                alt=""
-                className="w-[80px] h-[80px] md:w-[140px] md:h-[140px] object-cover rounded-full"
-              />
-              <div className="flex flex-col gap-2">
-                {/* upload */}
-                <input
-                  type="file"
-                  ref={avatarRef}
-                  hidden
-                  onChange={(e) =>
-                    setAvatar(URL.createObjectURL(e.target.files[0]))
-                  }
-                />
-                <span
-                  className="text-[#3254FF] cursor-pointer border border-[#3254FF] rounded-3xl px-3 py-2 w-[120px] text-center text-base"
-                  onClick={() => avatarRef.current.click()}
-                >
-                  Ubah Foto
-                </span>
-                <span className="flex items-center">
-                  <FaRegFileImage /> Maksimal 2MB
-                </span>
-              </div>
-            </div>
-            {/* field username*/}
-            <div className="mb-8">
-              <div className="w-full bg-[#22282A] flex justify-between items-center px-4 py-2 rounded-md border border-[#E7E3FC]/[.23]">
-                {/* input */}
-                <div className="flex flex-col w-full">
-                  <label
-                    htmlFor="username"
-                    className="text-base text-[#9D9EA1]"
-                  >
-                    Nama Pengguna
-                  </label>
-                  <input
-                    type="text"
-                    className="text-lg bg-transparent w-full border-none outline-none"
-                    placeholder="username"
-                    required
-                    disabled
-                    id="username"
-                    name="username"
-                    ref={usernameRef}
-                  />
-                </div>
-                <FaPen
-                  className="cursor-pointer w-6 h-6"
-                  onClick={() => {
-                    usernameRef.current.disabled = false;
-                    usernameRef.current.focus();
-                  }}
-                />
-              </div>
-              {/* hint */}
-              <span className="text-[#747674] text-xs">
-                this is a hint text to help user
-              </span>
-            </div>
-            {/* field email*/}
-            <div className="mb-8">
-              <div className="w-full bg-[#22282A] flex justify-between items-center px-4 py-2 rounded-md border border-[#E7E3FC]/[.23]">
-                {/* input */}
-                <div className="flex flex-col w-full">
-                  <label htmlFor="" className="text-base text-[#9D9EA1]">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="text-lg bg-transparent w-full border-none outline-none"
-                    placeholder="yudhadwi@restika.id"
-                    required
-                    disabled
-                    ref={emailRef}
-                  />
-                </div>
-              </div>
-            </div>
-            {/* field password*/}
-            <div className="mb-8">
-              <div className="w-full bg-[#22282A] flex justify-between items-center px-4 py-2 rounded-md border border-[#E7E3FC]/[.23]">
-                {/* input */}
-                <div className="flex flex-col w-full">
-                  <label htmlFor="" className="text-base text-[#9D9EA1]">
-                    Kata Sandi
-                  </label>
-                  <input
-                    type="password"
-                    className="text-lg bg-transparent w-full border-none outline-none"
-                    placeholder="****************"
-                    required
-                    disabled
-                    ref={passwordRef}
-                  />
-                </div>
-                <FaPen
-                  className="cursor-pointer w-6 h-6"
-                  onClick={() => {
-                    passwordRef.current.disabled = false;
-                    passwordRef.current.focus();
-                  }}
-                />
-              </div>
-            </div>
-            {/* submit button */}
-            <button
-              onClick={handleUpdateProfile}
-              className="px-4 py-2 bg-[#0F1E93] rounded-3xl text-base w-full md:w-[106px] md:h-[42px]"
-            >
-              Simpan
-            </button>
+            {/* form */}
+            {userData.map(
+              (user, index) =>
+                user.username === token && (
+                  <form key={index} onSubmit={handleUpdateProfile}>
+                    <h3 className="text-xl sm:text-3xl">Profile Saya</h3>
+                    {/* picture */}
+                    <div className="flex items-center my-5 md:my-8 gap-6">
+                      <img
+                        src={avatar ? avatar : "/img/icons/profile.png"}
+                        alt=""
+                        className="w-[80px] h-[80px] md:w-[140px] md:h-[140px] object-cover rounded-full"
+                      />
+                      <div className="flex flex-col gap-2">
+                        {/* upload */}
+                        <input
+                          type="file"
+                          ref={avatarRef}
+                          hidden
+                          onChange={(e) =>
+                            setAvatar(URL.createObjectURL(e.target.files[0]))
+                          }
+                        />
+                        <span
+                          className="text-[#3254FF] cursor-pointer border border-[#3254FF] rounded-3xl px-3 py-2 w-[120px] text-center text-base"
+                          onClick={() => avatarRef.current.click()}
+                        >
+                          Ubah Foto
+                        </span>
+                        <span className="flex items-center">
+                          <FaRegFileImage /> Maksimal 2MB
+                        </span>
+                      </div>
+                    </div>
+                    {/* field username*/}
+                    <div className="mb-8">
+                      <div className="w-full bg-[#22282A] flex justify-between items-center px-4 py-2 rounded-md border border-[#E7E3FC]/[.23]">
+                        {/* input */}
+                        <div className="flex flex-col w-full">
+                          <label
+                            htmlFor="username"
+                            className="text-base text-[#9D9EA1]"
+                          >
+                            Nama Pengguna
+                          </label>
+                          <input
+                            type="text"
+                            className="text-lg bg-transparent w-full border-none outline-none"
+                            placeholder={user.username}
+                            disabled
+                            name="username"
+                            ref={usernameRef}
+                          />
+                        </div>
+                        <FaPen
+                          className="cursor-pointer w-6 h-6"
+                          onClick={() => {
+                            usernameRef.current.disabled = false;
+                            usernameRef.current.focus();
+                          }}
+                        />
+                      </div>
+                      {/* hint */}
+                      <span className="text-[#747674] text-xs">
+                        this is a hint text to help user
+                      </span>
+                    </div>
+                    {/* field email*/}
+                    <div className="mb-8">
+                      <div className="w-full bg-[#22282A] flex justify-between items-center px-4 py-2 rounded-md border border-[#E7E3FC]/[.23]">
+                        {/* input */}
+                        <div className="flex flex-col w-full">
+                          <label
+                            htmlFor="email"
+                            className="text-base text-[#9D9EA1]"
+                          >
+                            Email
+                          </label>
+                          <input
+                            type="email"
+                            className="text-lg bg-transparent w-full border-none outline-none"
+                            placeholder="yudhadwi@restika.id"
+                            disabled
+                            ref={emailRef}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    {/* field password*/}
+                    <div className="mb-8">
+                      <div className="w-full bg-[#22282A] flex justify-between items-center px-4 py-2 rounded-md border border-[#E7E3FC]/[.23]">
+                        {/* input */}
+                        <div className="flex flex-col w-full">
+                          <label
+                            htmlFor="password"
+                            className="text-base text-[#9D9EA1]"
+                          >
+                            Kata Sandi
+                          </label>
+                          <input
+                            type="password"
+                            name="password"
+                            className="text-lg bg-transparent w-full border-none outline-none"
+                            placeholder="****************"
+                            disabled
+                            ref={passwordRef}
+                          />
+                        </div>
+                        <FaPen
+                          className="cursor-pointer w-6 h-6"
+                          onClick={() => {
+                            passwordRef.current.disabled = false;
+                            passwordRef.current.focus();
+                          }}
+                        />
+                      </div>
+                    </div>
+                    {/* submit button */}
+                    <button className="px-4 py-2 bg-[#0F1E93] rounded-3xl text-base w-full md:w-[106px] md:h-[42px]">
+                      Simpan
+                    </button>
+                  </form>
+                )
+            )}
           </div>
         </div>
         {/* mylist */}

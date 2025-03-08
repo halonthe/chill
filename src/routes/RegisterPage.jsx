@@ -16,14 +16,25 @@ const RegisterPage = () => {
     const confirmPassword = data["konfirmasi-kata-sandi"];
 
     // cek user input
-    if (!data) return;
+    if (!data) {
+      alert("semua field harus diisi!");
+      return;
+    }
+
     if (password !== confirmPassword) {
       alert("konfirmasi password salah!");
       return;
     }
 
     // save data user ke localStorage
-    localStorage.setItem("user", JSON.stringify(data));
+    const localStorageData = JSON.parse(localStorage.getItem("user")) || [];
+
+    const newUser = [
+      { username: data.username, "kata-sandi": password },
+      ...localStorageData,
+    ];
+
+    localStorage.setItem("user", JSON.stringify(newUser));
 
     // redirect ke halaman login setelah daftar
     navigate("/login");

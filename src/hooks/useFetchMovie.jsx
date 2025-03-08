@@ -17,7 +17,7 @@ export const useFetchMovie = () => {
       }
     };
     fetchMovie();
-  }, []);
+  }, [dataMovie]);
 
   return { dataMovie, loading };
 };

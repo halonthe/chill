@@ -6,9 +6,9 @@ export const useMyList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchMyList = async () => {
+    const fetchMyList = () => {
       try {
-        const data = await JSON.parse(localStorage.getItem("myList"));
+        const data = JSON.parse(localStorage.getItem("myList"));
         setMyListData(data);
       } catch (error) {
         console.log(error);
