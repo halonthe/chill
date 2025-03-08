@@ -7,6 +7,7 @@ import CardPremium from "../components/elements/CardPremium";
 import PopUpDetails from "../components/elements/PopUpDetails";
 import useDetailMovie from "../store/useDetailMovie";
 import InputFormProfile from "../components/elements/InputFormProfile";
+import { useMyList } from "../hooks/useMyList";
 
 const ProfilePage = () => {
   // form focus
@@ -51,7 +52,7 @@ const ProfilePage = () => {
   const { setDetailMovie } = useDetailMovie();
 
   // my-list data
-  const myListData = JSON.parse(localStorage.getItem("myList")) || [];
+  const { myListData } = useMyList();
   return (
     <>
       {openDetails && (
@@ -134,34 +135,30 @@ const ProfilePage = () => {
             </Link>
           </div>
           <div className="flex flex-wrap md:grid md:grid-flow-col md:overflow-x-auto gap-4 md:gap-7 mt-5">
-            {myListData.length > 0 ? (
-              myListData.map((item, index) => (
-                <Poster
-                  key={index}
-                  title={item.title}
-                  oriented="potrait"
-                  src={item.poster}
-                  showDetail={() => {
-                    setDetailMovie({
-                      title: item.title,
-                      poster: item.poster,
-                      banner: item.banner,
-                      year: item.year,
-                      rated: item.rated,
-                      plot: item.plot,
-                      actors: item.actors,
-                      genre: item.genre,
-                      writer: item.writer,
-                      type: item.type,
-                      isPremium: item.isPremium,
-                    });
-                    setOpenDetails(true);
-                  }}
-                />
-              ))
-            ) : (
-              <div>Tidak ada data</div>
-            )}
+            {myListData.map((item, index) => (
+              <Poster
+                key={index}
+                title={item.title}
+                oriented="potrait"
+                src={item.poster}
+                showDetail={() => {
+                  setDetailMovie({
+                    title: item.title,
+                    poster: item.poster,
+                    banner: item.banner,
+                    year: item.year,
+                    rated: item.rated,
+                    plot: item.plot,
+                    actors: item.actors,
+                    genre: item.genre,
+                    writer: item.writer,
+                    type: item.type,
+                    isPremium: item.isPremium,
+                  });
+                  setOpenDetails(true);
+                }}
+              />
+            ))}
           </div>
         </div>
       </section>
