@@ -1,38 +1,21 @@
-import { useEffect, useRef, useState } from "react";
-import { FaPen, FaRegFileImage } from "react-icons/fa6";
+import { useRef, useState } from "react";
+import { FaRegFileImage } from "react-icons/fa6";
 import { Link } from "react-router";
 import Poster from "../components/elements/Poster";
 // import CardRegular from "../components/elements/CardRegular";
 import CardPremium from "../components/elements/CardPremium";
 import PopUpDetails from "../components/elements/PopUpDetails";
 import useDetailMovie from "../store/useDetailMovie";
+import InputFormProfile from "../components/elements/InputFormProfile";
 
 const ProfilePage = () => {
   // form focus
   const avatarRef = useRef();
-  const usernameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
 
   // update profile
   const [avatar, setAvatar] = useState(null);
-  const [userData, setUserData] = useState([]);
   const token = localStorage.getItem("token");
-
-  // fetch user data
-  useEffect(() => {
-    const fetchUserData = () => {
-      try {
-        const data = JSON.parse(localStorage.getItem("user"));
-        setUserData(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchUserData();
-  }, []);
+  const userData = JSON.parse(localStorage.getItem("user"));
 
   const handleUpdateProfile = (e) => {
     e.preventDefault();
@@ -68,24 +51,7 @@ const ProfilePage = () => {
   const { setDetailMovie } = useDetailMovie();
 
   // my-list data
-  const [myListData, setMyListData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMyList = () => {
-      try {
-        const data = JSON.parse(localStorage.getItem("myList")) || [];
-        setMyListData(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMyList();
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
+  const myListData = JSON.parse(localStorage.getItem("myList")) || [];
   return (
     <>
       {openDetails && (
@@ -135,89 +101,19 @@ const ProfilePage = () => {
                         </span>
                       </div>
                     </div>
-                    {/* field username*/}
-                    <div className="mb-8">
-                      <div className="w-full bg-[#22282A] flex justify-between items-center px-4 py-2 rounded-md border border-[#E7E3FC]/[.23]">
-                        {/* input */}
-                        <div className="flex flex-col w-full">
-                          <label
-                            htmlFor="username"
-                            className="text-base text-[#9D9EA1]"
-                          >
-                            Nama Pengguna
-                          </label>
-                          <input
-                            type="text"
-                            className="text-lg bg-transparent w-full border-none outline-none"
-                            placeholder={user.username}
-                            disabled
-                            name="username"
-                            ref={usernameRef}
-                          />
-                        </div>
-                        <FaPen
-                          className="cursor-pointer w-6 h-6"
-                          onClick={() => {
-                            usernameRef.current.disabled = false;
-                            usernameRef.current.focus();
-                          }}
-                        />
-                      </div>
-                      {/* hint */}
-                      <span className="text-[#747674] text-xs">
-                        this is a hint text to help user
-                      </span>
-                    </div>
+                    {/* username*/}
+                    <InputFormProfile
+                      type="username"
+                      placeholder={user.username}
+                    />
                     {/* field email*/}
-                    <div className="mb-8">
-                      <div className="w-full bg-[#22282A] flex justify-between items-center px-4 py-2 rounded-md border border-[#E7E3FC]/[.23]">
-                        {/* input */}
-                        <div className="flex flex-col w-full">
-                          <label
-                            htmlFor="email"
-                            className="text-base text-[#9D9EA1]"
-                          >
-                            Email
-                          </label>
-                          <input
-                            type="email"
-                            className="text-lg bg-transparent w-full border-none outline-none"
-                            placeholder="yudhadwi@restika.id"
-                            disabled
-                            ref={emailRef}
-                          />
-                        </div>
-                      </div>
-                    </div>
+                    <InputFormProfile
+                      type="email"
+                      placeholder="yudhadwi@restika.id"
+                    />
                     {/* field password*/}
-                    <div className="mb-8">
-                      <div className="w-full bg-[#22282A] flex justify-between items-center px-4 py-2 rounded-md border border-[#E7E3FC]/[.23]">
-                        {/* input */}
-                        <div className="flex flex-col w-full">
-                          <label
-                            htmlFor="password"
-                            className="text-base text-[#9D9EA1]"
-                          >
-                            Kata Sandi
-                          </label>
-                          <input
-                            type="password"
-                            name="password"
-                            className="text-lg bg-transparent w-full border-none outline-none"
-                            placeholder="****************"
-                            disabled
-                            ref={passwordRef}
-                          />
-                        </div>
-                        <FaPen
-                          className="cursor-pointer w-6 h-6"
-                          onClick={() => {
-                            passwordRef.current.disabled = false;
-                            passwordRef.current.focus();
-                          }}
-                        />
-                      </div>
-                    </div>
+                    <InputFormProfile type="password" />
+
                     {/* submit button */}
                     <button className="px-4 py-2 bg-[#0F1E93] rounded-3xl text-base w-full md:w-[106px] md:h-[42px]">
                       Simpan

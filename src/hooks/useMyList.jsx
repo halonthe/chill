@@ -1,23 +1,6 @@
-import { useEffect, useState } from "react";
-
 export const useMyList = () => {
   // get my list data
-  const [myListData, setMyListData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMyList = () => {
-      try {
-        const data = JSON.parse(localStorage.getItem("myList"));
-        setMyListData(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMyList();
-  }, []);
+  const myListData = JSON.parse(localStorage.getItem("myList")) || [];
 
   // add to my list
   const addToMyList = (movie) => {
@@ -31,5 +14,5 @@ export const useMyList = () => {
     localStorage.setItem("myList", JSON.stringify(newList));
   };
 
-  return { loading, myListData, addToMyList, removeFromMyList };
+  return { myListData, addToMyList, removeFromMyList };
 };

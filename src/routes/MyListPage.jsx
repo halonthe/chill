@@ -8,9 +8,7 @@ import { useMyList } from "../hooks/useMyList";
 const MyListPage = () => {
   const [openDetails, setOpenDetails] = useState(false);
   const { setDetailMovie } = useDetailMovie();
-  const { loading, myListData } = useMyList();
-
-  if (loading) return <div>Loading...</div>;
+  const { myListData } = useMyList();
   return (
     <>
       {openDetails && (
