@@ -10,14 +10,23 @@ import InputFormProfile from "../components/elements/InputFormProfile";
 import { useMyList } from "../hooks/useMyList";
 
 const ProfilePage = () => {
-  // form focus
-  const avatarRef = useRef();
+  // my-list data
+  const { myListData } = useMyList();
 
-  // update profile
+  // pop up detail movie
+  const [openDetails, setOpenDetails] = useState(false);
+  const { setDetailMovie } = useDetailMovie();
+
+  // user data
+  const avatarRef = useRef();
   const [avatar, setAvatar] = useState(null);
   const token = localStorage.getItem("token") || "";
   const userData = JSON.parse(localStorage.getItem("user")) || [];
+  const currentUsername = userData.find(
+    (user) => user.username === token
+  ).username;
 
+  // update profile
   const handleUpdateProfile = (e) => {
     e.preventDefault();
 
@@ -47,12 +56,6 @@ const ProfilePage = () => {
     localStorage.setItem("user", JSON.stringify(editedUser));
   };
 
-  // pop up detail movie
-  const [openDetails, setOpenDetails] = useState(false);
-  const { setDetailMovie } = useDetailMovie();
-
-  // my-list data
-  const { myListData } = useMyList();
   return (
     <>
       {openDetails && (
@@ -69,62 +72,91 @@ const ProfilePage = () => {
           {/* update profile */}
           <div className="w-full md:w-1/2">
             {/* form */}
-            {userData.map(
-              (user, index) =>
-                user.username === token && (
-                  <form key={index} onSubmit={handleUpdateProfile}>
-                    <h3 className="text-xl sm:text-3xl">Profile Saya</h3>
-                    {/* picture */}
-                    <div className="flex items-center my-5 md:my-8 gap-6">
-                      <img
-                        src={avatar ? avatar : "/img/icons/profile.png"}
-                        alt=""
-                        className="w-[80px] h-[80px] md:w-[140px] md:h-[140px] object-cover rounded-full"
-                      />
-                      <div className="flex flex-col gap-2">
-                        {/* upload */}
-                        <input
-                          type="file"
-                          ref={avatarRef}
-                          hidden
-                          onChange={(e) =>
-                            setAvatar(URL.createObjectURL(e.target.files[0]))
-                          }
-                        />
-                        <span
-                          className="text-[#3254FF] cursor-pointer border border-[#3254FF] rounded-3xl px-3 py-2 w-[120px] text-center text-base"
-                          onClick={() => avatarRef.current.click()}
-                        >
-                          Ubah Foto
-                        </span>
-                        <span className="flex items-center">
-                          <FaRegFileImage /> Maksimal 2MB
-                        </span>
-                      </div>
-                    </div>
-                    {/* username*/}
-                    <InputFormProfile
-                      type="username"
-                      placeholder={user.username}
-                    />
-                    {/* field email*/}
-                    <InputFormProfile
-                      type="email"
-                      placeholder="yudhadwi@restika.id"
-                    />
-                    {/* field password*/}
-                    <InputFormProfile type="password" />
 
-                    {/* submit button */}
-                    <button className="px-4 py-2 bg-[#0F1E93] rounded-3xl text-base w-full md:w-[106px] md:h-[42px]">
-                      Simpan
-                    </button>
-                  </form>
-                )
-            )}
+            <form onSubmit={handleUpdateProfile}>
+              <h3 className="text-xl sm:text-3xl">Profile Saya</h3>
+              {/* picture */}
+              <div className="flex items-center my-5 md:my-8 gap-6">
+                <img
+                  src={avatar ? avatar : "/img/icons/profile.png"}
+                  alt=""
+                  className="w-[80px] h-[80px] md:w-[140px] md:h-[140px] object-cover rounded-full"
+                />
+                <div className="flex flex-col gap-2">
+                  {/* upload */}
+                  <input
+                    type="file"
+                    ref={avatarRef}
+                    hidden
+                    onChange={(e) =>
+                      setAvatar(URL.createObjectURL(e.target.files[0]))
+                    }
+                  />
+                  <span
+                    className="text-[#3254FF] cursor-pointer border border-[#3254FF] rounded-3xl px-3 py-2 w-[120px] text-center text-base"
+                    onClick={() => avatarRef.current.click()}
+                  >
+                    Ubah Foto
+                  </span>
+                  <span className="flex items-center">
+                    <FaRegFileImage /> Maksimal 2MB
+                  </span>
+                </div>
+              </div>
+              {/* username*/}
+              <InputFormProfile type="username" placeholder={currentUsername} />
+              {/* field email*/}
+              <InputFormProfile
+                type="email"
+                placeholder="yudhadwi@restika.id"
+              />
+              {/* field password*/}
+              <InputFormProfile type="password" />
+
+              {/* submit button */}
+              <button className="px-4 py-2 bg-[#0F1E93] rounded-3xl text-base w-full md:w-[106px] md:h-[42px]">
+                Simpan
+              </button>
+            </form>
           </div>
         </div>
         {/* mylist */}
+        <div className="w-full py-5 sm:py-10">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl sm:text-3xl">Daftar Saya</h3>
+            <Link to="/daftar-saya">
+              <span className="text-[#9D9EA1] hover:text-[#3254FF]">
+                Lihat Semua
+              </span>
+            </Link>
+          </div>
+          <div className="flex flex-wrap md:grid md:grid-flow-col md:overflow-x-auto gap-4 md:gap-7 mt-5">
+            {myListData.map((item, index) => (
+              <Poster
+                key={index}
+                title={item.title}
+                oriented="potrait"
+                src={item.poster}
+                showDetail={() => {
+                  setDetailMovie({
+                    title: item.title,
+                    poster: item.poster,
+                    banner: item.banner,
+                    year: item.year,
+                    rated: item.rated,
+                    plot: item.plot,
+                    actors: item.actors,
+                    genre: item.genre,
+                    writer: item.writer,
+                    type: item.type,
+                    isPremium: item.isPremium,
+                  });
+                  setOpenDetails(true);
+                }}
+              />
+            ))}
+          </div>
+        </div>
       </section>
     </>
   );
