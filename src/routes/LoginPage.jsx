@@ -18,7 +18,7 @@ const LoginPage = () => {
     const localStorageData = JSON.parse(localStorage.getItem("user")) || [];
 
     // cek user input
-    const userData = localStorageData.find(
+    const userData = localStorageData.filter(
       (user) => user.username === usernameInput
     );
 
