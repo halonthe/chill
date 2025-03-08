@@ -38,7 +38,7 @@ const ProfilePage = () => {
     const currentUser = userData.filter((user) => user.username === token);
     profileObj = {
       username: usernameInput || currentUser[0].username,
-      password: passwordInput || currentUser[0].password,
+      "kata-sandi": passwordInput || currentUser[0].password,
     };
 
     // kalau username diedit, token diganti
