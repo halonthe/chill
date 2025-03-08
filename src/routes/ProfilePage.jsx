@@ -21,10 +21,6 @@ const ProfilePage = () => {
   const avatarRef = useRef();
   const [avatar, setAvatar] = useState(null);
   const token = localStorage.getItem("token") || "";
-  const userData = JSON.parse(localStorage.getItem("user")) || [];
-  const currentUsername = userData.find(
-    (user) => user.username === token
-  ).username;
 
   // update profile
   const handleUpdateProfile = (e) => {
@@ -38,6 +34,7 @@ const ProfilePage = () => {
     let profileObj = {};
 
     // update current user data
+    const userData = JSON.parse(localStorage.getItem("user")) || [];
     const currentUser = userData.filter((user) => user.username === token);
     profileObj = {
       username: usernameInput || currentUser[0].username,
@@ -104,7 +101,7 @@ const ProfilePage = () => {
                 </div>
               </div>
               {/* username*/}
-              <InputFormProfile type="username" placeholder={currentUsername} />
+              <InputFormProfile type="username" placeholder={token} />
               {/* field email*/}
               <InputFormProfile
                 type="email"
