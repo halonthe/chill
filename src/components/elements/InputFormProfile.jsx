@@ -22,6 +22,7 @@ const InputFormProfile = ({ placeholder, type }) => {
             ref={inputRef}
           />
         </div>
+        {type !== "email" && (
         <FaPen
           className="cursor-pointer w-6 h-6"
           onClick={() => {
@@ -29,6 +30,7 @@ const InputFormProfile = ({ placeholder, type }) => {
             inputRef.current.focus();
           }}
         />
+        )}
       </div>
       {/* hint */}
       {/* <span className="text-[#747674] text-xs">
