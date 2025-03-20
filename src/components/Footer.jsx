@@ -48,15 +48,21 @@ const Footer = () => {
         </div>
         <ul className="hidden sm:grid grid-cols-3 gap-1 md:gap-x-3 sm:grid-cols-4 ">
           {genre.map((item) => (
-            <li key={item} className="text-[#C1C2C4]">
+            <li
+              key={item}
+              className="text-[#C1C2C4] cursor-pointer hover:text-[#3254FF]"
+            >
               {item}
             </li>
           ))}
         </ul>
         {openGenre && (
-          <ul className="grid grid-cols-3 gap-1 md:gap-x-3 sm:grid-cols-4 ">
+          <ul className="grid grid-cols-3 gap-1 md:gap-x-3 sm:grid-cols-4 sm:hidden">
             {genre.map((item) => (
-              <li key={item} className="text-[#C1C2C4]">
+              <li
+                key={item}
+                className="text-[#C1C2C4] cursor-pointer hover:text-[#3254FF]"
+              >
                 {item}
               </li>
             ))}
@@ -66,7 +72,7 @@ const Footer = () => {
       {/* helps */}
       <div className="flex flex-col">
         <div
-          className="cursor-pointer flex justify-between mb-4"
+          className="cursor-pointer sm:cursor-default flex justify-between mb-4"
           onClick={() => setOpenHelp(!openHelp)}
         >
           <p>Bantuan</p>
@@ -77,15 +83,21 @@ const Footer = () => {
         </div>
         <ul className="hidden sm:grid gap-1">
           {bantuan.map((item) => (
-            <li key={item} className="text-[#C1C2C4]">
+            <li
+              key={item}
+              className="text-[#C1C2C4] cursor-pointer hover:text-[#3254FF]"
+            >
               {item}
             </li>
           ))}
         </ul>
         {openHelp && (
-          <ul className="grid gap-1">
+          <ul className="grid gap-1 sm:hidden">
             {bantuan.map((item) => (
-              <li key={item} className="text-[#C1C2C4]">
+              <li
+                key={item}
+                className="text-[#C1C2C4] cursor-pointer hover:text-[#3254FF]"
+              >
                 {item}
               </li>
             ))}
