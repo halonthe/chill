@@ -1,7 +1,18 @@
+import { signInWithPopup } from "firebase/auth";
 import InputForm from "../components/elements/InputForm";
 import { Link } from "react-router";
+import { auth, googleProvider } from "../services/api/firebaseConfig";
 
 const AuthLayouts = ({ type, onSubmit }) => {
+  // masuk dengan akun google
+  const googleLogin = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center font-lato bg-[url('/img/background/bg-login.png')] w-full h-screen bg-no-repeat bg-cover bg-center">
       {/* container */}
@@ -70,7 +81,10 @@ const AuthLayouts = ({ type, onSubmit }) => {
         {/* google button */}
         <div className="flex flex-col items-center justify-center w-full">
           <span className="my-1 sm:my-3 text-[#C1C2C4]">Atau</span>
-          <button className=" flex items-center justify-center gap-1 w-full p-2 text-white bg-transparent border border-[#3D4142] rounded-[24px] sm:gap-3 sm:h-12">
+          <button
+            onClick={googleLogin}
+            className=" flex items-center justify-center gap-1 w-full p-2 text-white bg-transparent border border-[#3D4142] rounded-[24px] sm:gap-3 sm:h-12"
+          >
             <img
               src="/img/icons/google.png"
               alt="google"

@@ -13,6 +13,7 @@ import PaymentPage from "./routes/PaymentPage";
 import ConfirmPaymentPage from "./routes/ConfirmPaymentPage";
 import VideoPlayer from "./components/VideoPlayer";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
+import AdminPage from "./routes/AdminPage";
 
 const App = () => {
   return (
@@ -33,6 +34,8 @@ const App = () => {
             <Route path="subscribe" element={<SubscribePage />} />
             <Route path="payments" element={<PaymentPage />} />
             <Route path="payments/:slug" element={<ConfirmPaymentPage />} />
+            {/* halaman admin */}
+            <Route path="admin" element={<AdminPage />} />
           </Route>
 
           {/* watch */}
