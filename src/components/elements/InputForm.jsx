@@ -1,4 +1,4 @@
-const InputForm = ({ label, placeholder, inputType }) => {
+const InputForm = ({ label, placeholder, inputType, value, onChange }) => {
   return (
     <div className="mt-5 sm:mt-9">
       <label
@@ -11,8 +11,10 @@ const InputForm = ({ label, placeholder, inputType }) => {
         className="w-full h-7 bg-transparent border border-[#E7E3FC] border-opacity-30 p-4 rounded-[24px]  focus:outline-none placeholder:text-[#C1C2C4] placeholder:text-opacity-50 sm:h-12"
         type={inputType}
         placeholder={placeholder}
+        value={value}
         name={label.split(" ").join("-")}
         required
+        onChange={onChange}
       />
     </div>
   );
