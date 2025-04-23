@@ -48,9 +48,9 @@ const HomePage = () => {
 
       {/* Recent */}
       <MovieSlide title="Melanjutkan Tonton Film">
-        {dataMovie.map((item, index) => (
+        {dataMovie.map((item) => (
           <Poster
-            key={index}
+            key={item.id}
             title={item.Title}
             oriented="landscape"
             src={item.Images.landscape}
@@ -117,10 +117,10 @@ const HomePage = () => {
       {/* Film Trending */}
       <MovieSlide title="Film Trending">
         {dataMovie.map(
-          (item, index) =>
+          (item) =>
             item.Featured.includes("trending") && (
               <Poster
-                key={index}
+                key={item.id}
                 title={item.Title}
                 src={item.Images.potrait}
                 rating={item.ChillRating}
@@ -153,10 +153,10 @@ const HomePage = () => {
       {/* Rilis Baru */}
       <MovieSlide title="Rilis Baru">
         {dataMovie.map(
-          (item, index) =>
+          (item) =>
             Number(item.Year) >= 2025 && (
               <Poster
-                key={index}
+                key={item.id}
                 title={item.Title}
                 src={item.Images.potrait}
                 rating={item.ChillRating}

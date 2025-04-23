@@ -19,7 +19,7 @@ const MoviePage = () => {
 
       {/* Hero */}
       {dataMovie.map(
-        (item, index) =>
+        (item) =>
           item.Title === "Avatar" && (
             <Hero
               title={item.Title}
@@ -42,7 +42,7 @@ const MoviePage = () => {
                 setOpenDetails(true);
               }}
               showGenre={true}
-              key={index}
+              key={item.id}
             />
           )
       )}
@@ -50,10 +50,10 @@ const MoviePage = () => {
       {/* Recent */}
       <MovieSlide title="Melanjutkan Tonton Film">
         {dataMovie.map(
-          (item, index) =>
+          (item) =>
             item.Type === "movie" && (
               <Poster
-                key={index}
+                key={item.id}
                 title={item.Title}
                 oriented="landscape"
                 src={item.Images.landscape}
@@ -87,11 +87,11 @@ const MoviePage = () => {
       {/* Movie Persembahan Chill */}
       <MovieSlide title="Film Persembahan Chill">
         {dataMovie.map(
-          (item, index) =>
+          (item) =>
             item.Type === "movie" &&
             item.Premium === true && (
               <Poster
-                key={index}
+                key={item.id}
                 title={item.Title}
                 src={item.Images.potrait}
                 rating={item.ChillRating}
@@ -124,11 +124,11 @@ const MoviePage = () => {
       {/* Top Rating Movie Hari ini */}
       <MovieSlide title="Top Rating Film Hari ini">
         {dataMovie.map(
-          (item, index) =>
+          (item) =>
             item.Type === "movie" &&
             item.ChillRating >= 4.5 && (
               <Poster
-                key={index}
+                key={item.id}
                 title={item.Title}
                 src={item.Images.potrait}
                 rating={item.ChillRating}
@@ -161,11 +161,11 @@ const MoviePage = () => {
       {/* Movie Trending */}
       <MovieSlide title="Film Trending">
         {dataMovie.map(
-          (item, index) =>
+          (item) =>
             item.Featured.includes("trending") &&
             item.Type === "movie" && (
               <Poster
-                key={index}
+                key={item.id}
                 title={item.Title}
                 src={item.Images.potrait}
                 rating={item.ChillRating}
@@ -198,11 +198,11 @@ const MoviePage = () => {
       {/* Rilis Baru */}
       <MovieSlide title="Rilis Baru">
         {dataMovie.map(
-          (item, index) =>
+          (item) =>
             item.Type === "movie" &&
             Number(item.Year) >= 2025 && (
               <Poster
-                key={index}
+                key={item.id}
                 title={item.Title}
                 src={item.Images.potrait}
                 rating={item.ChillRating}
