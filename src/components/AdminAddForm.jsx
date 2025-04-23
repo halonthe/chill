@@ -1,84 +1,46 @@
-import { addDoc, collection } from "firebase/firestore";
 import InputForm from "../components/elements/InputForm";
-import { db } from "../services/api/firebaseConfig";
 import useAdminForm from "../store/useAdminForm";
+import { useMovie } from "../hooks/useMovie";
 
 const AdminAddForm = () => {
   const { setOpenForm, setOpenList, setOpenEdit } = useAdminForm();
-  const handleAddmovie = async (e) => {
-    e.preventDefault();
+  const { addMovie } = useMovie();
 
-    // get data dari input form
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-
-    const title = data.Title;
-    const poster = data["Link-Poster"];
-    const banner = data["Link-Banner"];
-    const year = data.Year;
-    const rated = data.Rated || "18+";
-    const plot = data.Plot;
-    const chillRating = data["Chill-Rating"];
-    const actors = data.Actors;
-    const genre = data.Genre;
-    const writer = data.Writer;
-    const type = data.Type;
-    const isPremium = data.isPremium === "true" || false;
-
-    if (
-      !title ||
-      !poster ||
-      !year ||
-      !rated ||
-      !plot ||
-      !actors ||
-      !genre ||
-      !writer ||
-      !type
-    ) {
-      alert("form tidak boleh kosong!");
-      return;
-    }
-
-    try {
-      const res = await addDoc(collection(db, "movies"), {
-        Title: title,
-        Images: { banner: banner, potrait: poster, landscape: banner },
-        Year: year,
-        Rated: rated,
-        Plot: plot,
-        ChillRating: chillRating,
-        Actors: actors,
-        Genre: genre,
-        Writer: writer,
-        Type: type,
-        Premium: isPremium,
-      });
-      console.log(res.id);
-      setOpenForm(false);
-      setOpenList(true);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <div className="mt-5 sm:mt-9">
-      <form onSubmit={handleAddmovie}>
-        <label htmlFor="Type" className="mt-9">
-          Type
-        </label>
-        <div className="flex gap-5">
-          <div className="flex gap-1">
-            <input type="radio" name="Type" value="film" />
-            <label>film</label>
-          </div>
-          <div className="flex gap-1">
-            <input type="radio" name="Type" value="series" />
-            <label>series</label>
+      <form onSubmit={addMovie}>
+        <div>
+          <label htmlFor="Type" className="mt-9">
+            Type
+          </label>
+          <div className="flex gap-5">
+            <div className="flex gap-1">
+              <input type="radio" name="Type" value="movie" />
+              <label>film</label>
+            </div>
+            <div className="flex gap-1">
+              <input type="radio" name="Type" value="series" />
+              <label>series</label>
+            </div>
           </div>
         </div>
-        <input type="checkbox" name="isPremium" value={true} />
-        <label htmlFor="isPremium">Premium</label>
+        <div className="mt-5">
+          <label htmlFor="">Featured</label>
+          <div className="flex gap-5">
+            <div>
+              <input type="checkbox" name="isPremium" value={true} />
+              <label htmlFor="isPremium">Premium</label>
+            </div>
+            <div>
+              <input type="checkbox" name="new" value="new-episode" />
+              <label htmlFor="new">New</label>
+            </div>
+            <div>
+              <input type="checkbox" name="trending" value="trending" />
+              <label htmlFor="trending">Trending</label>
+            </div>
+          </div>
+        </div>
         <InputForm inputType="text" label="Title" placeholder="Judul Film" />
         <InputForm
           inputType="text"
@@ -96,7 +58,7 @@ const AdminAddForm = () => {
           label="Plot"
           placeholder=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit consequatur ad ratione sit, quaerat quidem dolorem odio nisi repudiandae, rem tempora nostrum cupiditate veniam voluptate, quia maxime saepe? Maxime, expedita!"
         />
-        <InputForm inputType="text" label="Chill Rating" placeholder="X/5" />
+        <InputForm inputType="number" label="Chill Rating" placeholder="1.0" />
         <InputForm
           inputType="text"
           label="Actors"
