@@ -3,15 +3,14 @@ import Poster from "../components/elements/Poster";
 import MovieSlide from "../components/MovieSlide";
 import { useState } from "react";
 import PopUpDetails from "../components/elements/PopUpDetails";
-import { useFetchMovie } from "../hooks/useFetchMovie";
 import useDetailMovie from "../store/useDetailMovie";
+import { useMovie } from "../hooks/useMovie";
 
 const SeriesPage = () => {
   const [openDetails, setOpenDetails] = useState(false);
   const { setDetailMovie } = useDetailMovie();
-  const { dataMovie, loading } = useFetchMovie();
+  const { dataMovie } = useMovie();
 
-  if (loading) return <div>Loading...</div>;
   return (
     <>
       {openDetails && (

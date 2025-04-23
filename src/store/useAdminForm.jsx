@@ -7,8 +7,8 @@ const useAdminForm = create((set) => ({
   setOpenList: (newOpenList) => set({ openList: newOpenList }),
   openEdit: false,
   setOpenEdit: (newOpenEdit) => set({ openEdit: newOpenEdit }),
-  editMovie: {},
-  setEditMovie: (newEditMovie) => set({ editMovie: newEditMovie }),
+  editState: {},
+  setEditMovie: (newEditMovie) => set({ editState: newEditMovie }),
 }));
 
 export default useAdminForm;

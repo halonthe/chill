@@ -1,10 +1,8 @@
 import { FaPencil, FaTrashCan } from "react-icons/fa6";
-import { useFetchMovie } from "../hooks/useFetchMovie";
 import AdminAddForm from "../components/AdminAddForm";
 import useAdminForm from "../store/useAdminForm";
-import { deleteDoc, doc } from "firebase/firestore";
-import { db } from "../services/api/firebaseConfig";
 import AdminEditForm from "../components/AdminEditForm";
+import { useMovie } from "../hooks/useMovie";
 
 const AdminPage = () => {
   const {
@@ -16,15 +14,7 @@ const AdminPage = () => {
     setOpenEdit,
     setEditMovie,
   } = useAdminForm();
-  const { dataMovie } = useFetchMovie();
-
-  const handleDelete = async (id) => {
-    try {
-      await deleteDoc(doc(db, "movies", id));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { dataMovie, deleteMovie } = useMovie();
 
   return (
     <section className="max-w-[1440px] w-full px-5 sm:px-20 py-5 sm:py-10">
@@ -90,6 +80,7 @@ const AdminPage = () => {
                           writer: item.Writer,
                           type: item.Type,
                           isPremium: item.Premium,
+                          featured: item.Featured,
                         });
                         setOpenEdit(true);
                         setOpenForm(false);
@@ -98,7 +89,7 @@ const AdminPage = () => {
                     >
                       <FaPencil className="text-blue-600" />
                     </button>
-                    <button onClick={() => handleDelete(item.id)}>
+                    <button onClick={() => deleteMovie(item.id)}>
                       <FaTrashCan className="text-red-600" />
                     </button>
                   </td>

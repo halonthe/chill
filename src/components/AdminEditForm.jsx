@@ -1,97 +1,83 @@
-import { doc, updateDoc } from "firebase/firestore";
 import InputForm from "../components/elements/InputForm";
-import { db } from "../services/api/firebaseConfig";
 import useAdminForm from "../store/useAdminForm";
 import { useState } from "react";
+import { useMovie } from "../hooks/useMovie";
 
 const AdminEditForm = () => {
-  const { setOpenForm, setOpenList, setOpenEdit, editMovie } = useAdminForm();
-  const [title, setTitle] = useState(editMovie.title);
-  const [poster, setPoster] = useState(editMovie.poster);
-  const [banner, setBanner] = useState(editMovie.banner);
-  const [year, setYear] = useState(editMovie.year);
-  const [plot, setPlot] = useState(editMovie.plot);
-  const [chillRating, setChillRating] = useState(editMovie.chillRating);
-  const [actors, setActors] = useState(editMovie.actors);
-  const [genre, setGenre] = useState(editMovie.genre);
-  const [writer, setWriter] = useState(editMovie.writer);
+  const { setOpenForm, setOpenList, setOpenEdit, editState } = useAdminForm();
 
-  const handleEditmovie = async (e) => {
-    e.preventDefault();
+  const [title, setTitle] = useState(editState.title);
+  const [poster, setPoster] = useState(editState.poster);
+  const [banner, setBanner] = useState(editState.banner);
+  const [year, setYear] = useState(editState.year);
+  const [plot, setPlot] = useState(editState.plot);
+  const [chillRating, setChillRating] = useState(editState.chillRating);
+  const [actors, setActors] = useState(editState.actors);
+  const [genre, setGenre] = useState(editState.genre);
+  const [writer, setWriter] = useState(editState.writer);
+  const [premium, setPremium] = useState(editState.isPremium);
+  const [newEpisode, setNewEpisode] = useState(
+    editState.featured.includes("new-episode")
+  );
+  const [trending, setTrending] = useState(
+    editState.featured.includes("trending")
+  );
 
-    // get data dari input form
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+  const { editMovie } = useMovie();
 
-    const title = data.Title;
-    const poster = data["Link-Poster"];
-    const banner = data["Link-Banner"];
-    const year = data.Year;
-    const rated = data.Rated || "18+";
-    const plot = data.Plot;
-    const chillRating = data["Chill-Rating"];
-    const actors = data.Actors;
-    const genre = data.Genre;
-    const writer = data.Writer;
-    const type = data.Type;
-    const isPremium = data.isPremium === "true" || false;
-
-    if (
-      !title ||
-      !poster ||
-      !year ||
-      !rated ||
-      !plot ||
-      !actors ||
-      !genre ||
-      !writer ||
-      !type
-    ) {
-      alert("form tidak boleh kosong!");
-      return;
-    }
-
-    try {
-      await updateDoc(doc(db, "movies", editMovie.id), {
-        Title: title,
-        Images: { banner: banner, potrait: poster, landscape: banner },
-        Year: year,
-        Rated: rated,
-        Plot: plot,
-        ChillRating: chillRating,
-        Actors: actors,
-        Genre: genre,
-        Writer: writer,
-        Type: type,
-        Premium: isPremium,
-      });
-      alert("sukses edit!");
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setOpenForm(false);
-      setOpenEdit(false);
-      setOpenList(true);
-    }
-  };
   return (
     <div className="mt-5 sm:mt-9">
-      <form onSubmit={handleEditmovie}>
-        <label htmlFor="Type" className="mt-9">
-          Type
-        </label>
-        <div className="flex gap-5">
-          <div className="flex gap-1">
-            <input type="radio" name="Type" value="film" />
-            <label>film</label>
-          </div>
-          <div className="flex gap-1">
-            <input type="radio" name="Type" value="series" />
-            <label>series</label>
+      <form onSubmit={editMovie}>
+        <div>
+          <label htmlFor="Type" className="mt-9">
+            Type
+          </label>
+          <div className="flex gap-5">
+            <div className="flex gap-1">
+              <input type="radio" name="Type" value="movie" />
+              <label>film</label>
+            </div>
+            <div className="flex gap-1">
+              <input type="radio" name="Type" value="series" />
+              <label>series</label>
+            </div>
           </div>
         </div>
-        <input type="checkbox" name="isPremium" value={true} />
-        <label htmlFor="isPremium">Premium</label>
+        <div className="mt-5">
+          <label htmlFor="">Featured</label>
+          <div className="flex gap-5">
+            <div>
+              <input
+                type="checkbox"
+                name="isPremium"
+                value={true}
+                checked={premium}
+                onChange={(e) => setPremium(e.target.checked)}
+              />
+              <label htmlFor="isPremium">Premium</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                name="new"
+                value="new-episode"
+                checked={newEpisode}
+                onChange={(e) => setNewEpisode(e.target.checked)}
+              />
+              <label htmlFor="new">New</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                name="trending"
+                value="trending"
+                checked={trending}
+                onChange={(e) => setTrending(e.target.checked)}
+              />
+              <label htmlFor="trending">Trending</label>
+            </div>
+          </div>
+        </div>
         <InputForm
           inputType="text"
           label="Title"
@@ -128,7 +114,7 @@ const AdminEditForm = () => {
           onChange={(e) => setPlot(e.target.value)}
         />
         <InputForm
-          inputType="text"
+          inputType="number"
           label="Chill Rating"
           placeholder="X/5"
           value={chillRating}

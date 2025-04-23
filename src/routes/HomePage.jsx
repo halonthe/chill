@@ -4,14 +4,12 @@ import Poster from "../components/elements/Poster";
 import MovieSlide from "../components/MovieSlide";
 import PopUpDetails from "../components/elements/PopUpDetails";
 import useDetailMovie from "../store/useDetailMovie";
-import { useFetchMovie } from "../hooks/useFetchMovie";
+import { useMovie } from "../hooks/useMovie";
 
 const HomePage = () => {
   const [openDetails, setOpenDetails] = useState(false);
   const { setDetailMovie } = useDetailMovie();
-  const { dataMovie, loading } = useFetchMovie();
-
-  if (loading) return <div>Loading...</div>;
+  const { dataMovie } = useMovie();
   return (
     <>
       {openDetails && (
@@ -83,10 +81,10 @@ const HomePage = () => {
       {/* Top Rating dan Series Hari ini */}
       <MovieSlide title="Top Rating Film dan Series Hari ini">
         {dataMovie.map(
-          (item, index) =>
+          (item) =>
             item.ChillRating >= 4.5 && (
               <Poster
-                key={index}
+                key={item.id}
                 title={item.Title}
                 src={item.Images.potrait}
                 rating={item.ChillRating}
